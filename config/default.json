@@ -2,9 +2,9 @@
   "knex": {
     "client": "postgresql",
     "connection": {
-      "database": "thesis",
-      "user": "postgres",
-      "password": "postgres",
+      "database": "wandering_wave",
+      "user": "rickybooby",
+      "password": "",
       "host": "localhost",
       "port": 5432
     },
@@ -21,8 +21,14 @@
     }
   },
 
+
   "passport": {
-    "Google": {},
+    "Google": {
+      "clientID": "845995347631-k6guoa9hmbfr0sjqbgj59lslpb69tbuk.apps.googleusercontent.com",
+      "clientSecret": "UkacUot4qMa1QbnjZjzcheqo",
+      "callbackURL": "http://localhost:3000/auth/google/callback"
+    },
+//    "Google": {},
     "Facebook": {},
     "Twitter": {}
   }

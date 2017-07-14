@@ -4,12 +4,15 @@
   "scripts": {
     "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
     "start": "nodemon server",
+    "debug": "nodemon --inspect server",
+    "debug-brk": "nodemon --debug-brk --inspect server",
     "test": "NODE_ENV=test grunt test",
     "build": "webpack --watch"
   },
   "author": "Hack Reactor",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-core": "^6.24.1",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.5.0",
