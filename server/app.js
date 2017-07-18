@@ -17,11 +17,16 @@ app.use(middleware.passport.initialize());
 app.use(middleware.passport.session());
 
 app.use(middleware.flash());
+app.use((req, res, done) => {
+  req.flash('loginMessage', 'Please log in');
+  done();
+});
 
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', routes.auth);
 app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
+app.use('/messages', routes.messages);
 
 module.exports = app;

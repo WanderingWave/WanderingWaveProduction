@@ -7,7 +7,8 @@
     "debug": "nodemon --inspect server",
     "debug-brk": "nodemon --debug-brk --inspect server",
     "test": "NODE_ENV=test grunt test",
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "main": "server/index.js"
   },
   "author": "Hack Reactor",
   "license": "MIT",
@@ -36,9 +37,7 @@
     "pg": "^6.1.5",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "redis": "^2.7.1"
-  },
-  "devDependencies": {
+    "redis": "^2.7.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
     "babel-preset-latest": "^6.24.0",
@@ -52,6 +51,8 @@
     "supertest": "^3.0.0",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"
+  },
+  "devDependencies": {
   },
   "babel": {
     "plugins": [
