@@ -3,8 +3,8 @@
     "client": "postgresql",
     "connection": {
       "database": "thesis",
-      "user": "postgres",
-      "password": "postgres",
+      "user": "kenlyhui",
+      "password": "",
       "host": "localhost",
       "port": 5432
     },
@@ -22,7 +22,11 @@
   },
 
   "passport": {
-    "Google": {},
+        "Google": {
+      "clientID": "170433683863-is6mmo2gaeblblji7fn0m494ai2g68o6.apps.googleusercontent.com",
+      "clientSecret": "OzWMUZR7hYyWUe9sX6IhdEY3",
+      "callbackURL": "http://localhost:3000/auth/google/callback"
+    },
     "Facebook": {},
     "Twitter": {}
   }
