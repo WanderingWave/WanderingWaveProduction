@@ -5,11 +5,13 @@ const router = express.Router();
 
 router.route('/')
   .get(middleware.auth.verify, (req, res) => {
+    console.log('this is the index route in routes/auth.js');
     res.render('index.ejs');
   });
 
 router.route('/login')
   .get((req, res) => {
+    console.log('this is the /login route in routes/auth.js');
     res.render('login.ejs', { message: req.flash('loginMessage') });
   })
   .post(middleware.passport.authenticate('local-login', {
