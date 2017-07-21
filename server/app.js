@@ -5,7 +5,7 @@ const middleware = require('./middleware');
 const routes = require('./routes');
 const app = express();
 
-app.use(middleware.morgan('dev'));
+// app.use(middleware.morgan('dev'));
 app.use(middleware.bodyParser.urlencoded({extended: false}));
 app.use(middleware.bodyParser.json());
 app.set('views', path.join(__dirname, 'views')); // set the views folder

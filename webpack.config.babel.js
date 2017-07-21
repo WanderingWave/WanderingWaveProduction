@@ -2,7 +2,8 @@ import webpack from 'webpack';
 import path from 'path';
 
 const config = {
-  entry: './client/src/app',
+  entry: './client/src/app.jsx',
+  devtool: 'eval-source-map',
   output: {
     path: path.join(__dirname, 'public/dist'),
     filename: 'bundle.js'
