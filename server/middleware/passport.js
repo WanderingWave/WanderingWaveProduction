@@ -29,10 +29,10 @@ passport.use('google', new GoogleStrategy({
   clientSecret: config.Google.clientSecret,
   callbackURL: config.Google.callbackURL
 },
-  (accessToken, refreshToken, profile, done) => {
-    console.log('-------------------middleware/passport GogleStrategy');
-    getOrCreateOAuthProfile('google', profile, done)
-  })
+(accessToken, refreshToken, profile, done) => {
+  console.log('-------------------middleware/passport GogleStrategy');
+  getOrCreateOAuthProfile('google', profile, done);
+})
 );
 
 // passport.use('facebook', new FacebookStrategy({
@@ -55,12 +55,12 @@ passport.use('google', new GoogleStrategy({
 // );
 
 const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
-  console.log('profile is ', oauthProfile)
+  console.log('profile is ', oauthProfile);
   return models.Auth.where({ type, oauth_id: oauthProfile.id }).fetch({
     withRelated: ['profile']
   })
     .then(oauthAccount => {
-        console.log('----------------- we expect an authAccount ', oauthAccount)
+      console.log('----------------- we expect an authAccount ', oauthAccount);
       if (oauthAccount) {
         throw oauthAccount;
       }
@@ -72,7 +72,7 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.where({ email: oauthProfile.emails[0].value }).fetch();
     })
     .then(profile => {
-     console.log('----------------- we expect a profile ', profile)
+      console.log('----------------- we expect a profile ', profile);
 
       let profileInfo = {
         first: oauthProfile.name.givenName,
