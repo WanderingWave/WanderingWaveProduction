@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
-import axios from 'axios';
 import Connect from './components/connect.jsx';
 import Waiting from './components/waiting.jsx';
 import Gameboard from './components/gameboard.jsx';
@@ -13,6 +12,7 @@ class App extends React.Component {
     this.state = {
       connected: false,
       matched: false,
+      opponent: ''
     }
   }
 
@@ -23,16 +23,19 @@ class App extends React.Component {
       console.log('score', obj)
     });
 
-    this.socket.on('matched', function(obj) {
-      this.setState({ matched: true })
-    });
+    this.socket.on('matched', function(name) {
+      this.setState({
+        matched: true,
+        opponent: name
+      })
+    }.bind(this));
   }
 
 
-  handleConnect() {
+  handleConnect(name, serial) {
 
-    let name = document.getElementById('nickname').value;
-    let serial = document.getElementById('serial').value;
+    // let name = document.getElementById('nickname').value;
+    // let serial = document.getElementById('serial').value;
     serial = serial.toUpperCase();
 
     console.log('handle connect called');
@@ -60,7 +63,7 @@ class App extends React.Component {
 
     //READY TO PLAY
     if (this.state.connected && this.state.matched) {
-      main = <Gameboard />
+      main = <Gameboard opponent={this.state.opponent}/>
     }
 
     return (
