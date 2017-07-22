@@ -11,29 +11,14 @@ router.route('/')
 
 router.route('/login')
   .get((req, res) => {
-    console.log('this is the /login route in routes/auth.js');
     res.render('login.ejs', { message: req.flash('loginMessage') });
-  })
-  .post(middleware.passport.authenticate('local-login', {
-    successRedirect: '/profile',
-    failureRedirect: '/login',
-    failureFlash: true
-  }));
-
-router.route('/signup')
-  .get((req, res) => {
-    res.render('signup.ejs', { message: req.flash('signupMessage') });
-  })
-  .post(middleware.passport.authenticate('local-signup', {
-    successRedirect: '/profile',
-    failureRedirect: '/signup',
-    failureFlash: true
-  }));
+  });
 
 router.route('/profile')
   .get(middleware.auth.verify, (req, res) => {
     res.render('profile.ejs', {
-      user: req.user // get the user out of session and pass to template
+      user: req.user, // get the user out of session and pass to template
+      message: req.flash('success')[0]
     });
   });
 
@@ -49,7 +34,8 @@ router.get('/auth/google', middleware.passport.authenticate('google', {
 
 router.get('/auth/google/callback', middleware.passport.authenticate('google', {
   successRedirect: '/profile',
-  failureRedirect: '/login'
+  failureRedirect: '/login',
+  successFlash: 'You have successfully logged in... quite an achievement!'
 }));
 
 router.get('/auth/facebook', middleware.passport.authenticate('facebook', {

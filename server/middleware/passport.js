@@ -28,11 +28,7 @@ passport.use('google', new GoogleStrategy({
   clientID: config.Google.clientID,
   clientSecret: config.Google.clientSecret,
   callbackURL: config.Google.callbackURL
-},
-(accessToken, refreshToken, profile, done) => {
-  console.log('-------------------middleware/passport GogleStrategy');
-  getOrCreateOAuthProfile('google', profile, done);
-})
+}, (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('google', profile, done))
 );
 
 // passport.use('facebook', new FacebookStrategy({
@@ -43,8 +39,9 @@ passport.use('google', new GoogleStrategy({
 // },
 //   (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('facebook', profile, done))
 // );
+//
+// // REQUIRES PERMISSIONS FROM TWITTER TO OBTAIN USER EMAIL ADDRESSES
 
-// REQUIRES PERMISSIONS FROM TWITTER TO OBTAIN USER EMAIL ADDRESSES
 // passport.use('twitter', new TwitterStrategy({
 //   consumerKey: config.Twitter.consumerKey,
 //   consumerSecret: config.Twitter.consumerSecret,
@@ -109,8 +106,8 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
         done(null, profile.serialize());
       }
     })
-    .catch(() => {
-      // TODO: This is not working because redirect to login uses req.flash('loginMessage')
+    .catch((err) => {
+      console.log(err);
       // and there is no access to req here
       done(null, null, {
         'message': 'Signing up requires an email address, \
