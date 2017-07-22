@@ -1,8 +1,6 @@
 'use strict';
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-// const FacebookStrategy = require('passport-facebook').Strategy;
-// const TwitterStrategy = require('passport-twitter').Strategy;
 const config = require('config')['passport'];
 const models = require('../../db/models');
 
@@ -43,6 +41,7 @@ passport.use('google', new GoogleStrategy({
 // );
 //
 // // REQUIRES PERMISSIONS FROM TWITTER TO OBTAIN USER EMAIL ADDRESSES
+
 // passport.use('twitter', new TwitterStrategy({
 //   consumerKey: config.Twitter.consumerKey,
 //   consumerSecret: config.Twitter.consumerSecret,
@@ -53,11 +52,12 @@ passport.use('google', new GoogleStrategy({
 // );
 
 const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
+  console.log('profile is ', oauthProfile);
   return models.Auth.where({ type, oauth_id: oauthProfile.id }).fetch({
     withRelated: ['profile']
   })
     .then(oauthAccount => {
-
+      console.log('----------------- we expect an authAccount ', oauthAccount);
       if (oauthAccount) {
         throw oauthAccount;
       }
@@ -69,6 +69,7 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.where({ email: oauthProfile.emails[0].value }).fetch();
     })
     .then(profile => {
+      console.log('----------------- we expect a profile ', profile);
 
       let profileInfo = {
         first: oauthProfile.name.givenName,
@@ -107,7 +108,6 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
     })
     .catch((err) => {
       console.log(err);
-      // TODO: This is not working because redirect to login uses req.flash('loginMessage')
       // and there is no access to req here
       done(null, null, {
         'message': 'Signing up requires an email address, \

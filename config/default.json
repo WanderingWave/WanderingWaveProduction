@@ -3,7 +3,7 @@
     "client": "postgresql",
     "connection": {
       "database": "wandering_wave",
-      "user": "rickybooby",
+      "user": "test_user",
       "password": "",
       "host": "localhost",
       "port": 5432
@@ -23,12 +23,11 @@
 
 
   "passport": {
-    "Google": {
-      "clientID": "845995347631-k6guoa9hmbfr0sjqbgj59lslpb69tbuk.apps.googleusercontent.com",
-      "clientSecret": "UkacUot4qMa1QbnjZjzcheqo",
+      "Google": {
+      "clientID": "707501463298-g9bulom17ah27qtv93jt7v4suksifpaa.apps.googleusercontent.com",
+      "clientSecret": "ah4s_aaQk1mOvOdh-8CTgenO",
       "callbackURL": "http://localhost:3000/auth/google/callback"
     },
-//    "Google": {},
     "Facebook": {},
     "Twitter": {}
   }
