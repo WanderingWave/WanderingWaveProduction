@@ -20,8 +20,6 @@
       "directory": "db/seeds"
     }
   },
-
-
   "passport": {
       "Google": {
       "clientID": "707501463298-g9bulom17ah27qtv93jt7v4suksifpaa.apps.googleusercontent.com",

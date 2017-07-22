@@ -23,10 +23,10 @@ class App extends React.Component {
       console.log('score', obj)
     });
 
-    this.socket.on('matched', function(name) {
+    this.socket.on('matched', function({opponent}) {
       this.setState({
         matched: true,
-        opponent: name
+        opponent: opponent
       })
     }.bind(this));
   }
