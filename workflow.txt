@@ -1,5 +1,4 @@
-Workflow
-
+WORKFLOW
 (0) create a feature branch
 (1) add, commit, 'push origin <branch>'
 (2) git fetch upstream
@@ -8,7 +7,25 @@ Workflow
 (4) git push origin <branch>
 (5) pull request on github
 
+NOTES
+() Use yarn instead of npm
 
-Notes
+MUSE COMMANDS
+() Start the OSC Client for the band 4B9F
+muse-io --device Muse-4B9F --osc osc.udp://localhost:5000
+() Start the OSC Client for fake data
+muse-player -f data.muse -s osc.udp://localhost:####
 
-(1) Use updated version of npm install -> package-lock.json created
+REPOSITORY SETUP
+()  yarn install
+()  yarn add <and additional packages needed>
+()  webpack —-watch
+()  nodemon server
+()  redis-server
+()  verify/setup Postgres
+      - createdb wandering_wave
+      - createuser test_user -l -s
+      - knex migrate:latest
+
+PRO FLOW CHEAT SHEET
+()  Command L - Go to URL for quick Google Search.
