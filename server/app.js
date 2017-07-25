@@ -3,10 +3,13 @@ const express = require('express');
 const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
+const messageController = require('./controllers').Messages
+
 const app = express();
 
-// app.use(middleware.morgan('dev'));
-app.use(middleware.bodyParser.urlencoded({extended: false}));
+app.use(middleware.morgan('dev'));
+app.use(middleware.bodyParser.urlencoded({ extended: false }));
+
 app.use(middleware.bodyParser.json());
 app.set('views', path.join(__dirname, 'views')); // set the views folder
 app.set('view engine', 'ejs');
@@ -28,5 +31,10 @@ app.use('/', routes.auth);
 app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
 app.use('/messages', routes.messages);
+
+app.post('/user', (req, res) => {
+  messageController.create(req, res);
+  res.end("Successful Test");
+});
 
 module.exports = app;

@@ -21,12 +21,11 @@
     }
   },
   "passport": {
-      "Google": {
-      "clientID": "707501463298-g9bulom17ah27qtv93jt7v4suksifpaa.apps.googleusercontent.com",
-      "clientSecret": "ah4s_aaQk1mOvOdh-8CTgenO",
-      "callbackURL": "http://localhost:3000/auth/google/callback"
-    },
-    "Facebook": {},
-    "Twitter": {}
+    "Google": {
+      "clientID": "842111816453-dfuggs5c2me5bc36pootou7csrr7i6fl.apps.googleusercontent.com",
+      "clientSecret": "N2Ncrtd6f8PcorjM6hxUscF4",
+      "callbackURL": "http://localhost:3000/auth/google/callback"}
+    // "Facebook": {},
+    // "Twitter": {}
   }
 }

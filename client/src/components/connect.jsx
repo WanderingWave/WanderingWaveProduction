@@ -4,16 +4,14 @@ class Connect extends React.Component {
 
   constructor(props) {
     super(props);
-    this.name = localStorage.getItem('name') || '',
-    this.serial = localStorage.getItem('serial') || ''
+    this.name = localStorage.getItem('name') || '';
+    this.serial = localStorage.getItem('serial') || '';
   }
 
   render() {
     return (
       <div>
         <h1 className='welcome-message'> Welcome Back! </h1>
-        <button onClick={() => this.props.handleConnect('paul', '3D62')}>Paul</button>
-        <button onClick={() => this.props.handleConnect('james', '5394')}>James</button>
         <h3 className='instructions'> Enter a nickname and your headset number to start a game</h3>
         <input className='nickname'
                id="nickname"
@@ -26,7 +24,7 @@ class Connect extends React.Component {
                defaultValue={this.serial}
         />
         <button onClick={this.props.handleConnect}>Connect</button>
-        {/*<button onClick={this.props.handleConnect}>Paul</button>*/}
+        <button onClick={this.props.handlePlay}>Play</button>
       </div>
     );
   }
