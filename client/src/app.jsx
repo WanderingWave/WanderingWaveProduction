@@ -48,6 +48,10 @@ class App extends React.Component {
       console.log('current connection is ', currentConnection);
     });
 
+    this.socket.on('signalStrength', function(signalStrength) {
+      console.log('current signalStrength is', signalStrength);
+    });
+
   }
 
   handleConnect() {
@@ -56,7 +60,7 @@ class App extends React.Component {
     let serial = document.getElementById('serial').value;
 
     serial = serial.toUpperCase();
-    this.setState({name, serial});
+    this.setState({ name, serial });
 
     console.log('handle connect called');
     [
@@ -81,7 +85,7 @@ class App extends React.Component {
     //NOT CONNECTED
     if (!this.state.connected) {
       main =
-      <div>
+        <div>
       {/*<ViewBars socket={this.socket}/>*/}
       <Connect
       handlePlay={this.handlePlay.bind(this)}

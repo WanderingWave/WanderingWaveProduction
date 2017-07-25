@@ -28,7 +28,7 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('connectPlayers', ({ serial }) => {
     console.log('clients serial is ', serial, ' client is ', clients[serial]);
-    if(!clients[serial] || clients[serial].isPlaying) { return; } // if no client or client is playing, end
+    if (!clients[serial] || clients[serial].isPlaying) { return; } // if no client or client is playing, end
 
     console.log('connecting serial ', clients[serial]);
     clients[serial].isPlaying = true;
@@ -56,13 +56,14 @@ oscServer.on('message', function(msg, { port }) {
   } else if (msg[0] === '/muse/elements/experimental/mellow') {
 
     // if (!activeClients[port]) { return; }; // port doesn't exist
-    if(!map[port]) { return; }
-    if(!map[port].isPlaying) { // client is not playing yet. stream them just their data
+    if (!map[port]) { return; }
+    if (!map[port].isPlaying) { // client is not playing yet. stream them just their data
       io.to(map[port].socketId).emit('testConnection', msg[1] * 100);
     }
     dataPoints[port] = dataPoints[port] || [];
     dataPoints[port].push(msg[1]);
   }
+
 });
 
 let startPlaying = function(player1, player2) {
