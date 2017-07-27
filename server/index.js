@@ -14,8 +14,7 @@ var map = {},
   queue = [],
   dataPoints = {},
   playing = [],
-  clients = {},
-  activeClients = {};
+  clients = {};
 
 //PLAYER CONNECTS
 io.sockets.on('connection', function(socket) {
@@ -37,15 +36,10 @@ io.sockets.on('connection', function(socket) {
       startPlaying(queue.shift(), queue.shift());
     }
   });
-
 });
 
 //PLAYER STREAMS DATA
 oscServer.on('message', function(msg, { port }) {
-
-  // if (msg[0] === '/muse/elements/horseshoe') {
-  //   console.log(msg)
-  // }
 
   if (msg[0] === '/muse/config') {
     var config = JSON.parse(msg[1]);
@@ -61,7 +55,6 @@ oscServer.on('message', function(msg, { port }) {
 
     if (msg[0] === '/muse/elements/experimental/mellow') {
 
-      // if (!activeClients[port]) { return; }; // port doesn't exist
       if (!map[port]) { return; }
       if (!map[port].isPlaying) { // client is not playing yet. stream them just their data
         io.to(map[port].socketId).emit('testConnection', msg[1] * 100);
@@ -94,8 +87,6 @@ let startPlaying = function(player1, player2) {
   });
 
   playing.push([player1, player2]);
-  // activeClients[player1.port] = true
-  // activeClients[player2.port] = true
 };
 
 
@@ -103,10 +94,7 @@ let startPlaying = function(player1, player2) {
 let getPoints = function({ port }) {
 
   if (!dataPoints[port] || !dataPoints[port].length) { return 0; }
-  // console.log('before queue', dataPoints[port].length, port)
-
   var points = dataPoints[port].shift();
-  // console.log('after queue', dataPoints[port].length, port)
 
   return points;
 
