@@ -1,4 +1,5 @@
 import React from 'react';
+// import ViewBars from './viewbars.jsx';
 
 class Connect extends React.Component {
 
@@ -9,8 +10,10 @@ class Connect extends React.Component {
   }
 
   render() {
+    console.log('this are the props ', this.props);
     return (
       <div>
+        {/*<ViewBars />*/}
         <h1 className='welcome-message'> Welcome Back! </h1>
         <h3 className='instructions'> Enter a nickname and your headset number to start a game</h3>
         <input className='nickname'

@@ -8,5 +8,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('messages');
+  return Promise(knex.schema.dropTable('messages'));
 };

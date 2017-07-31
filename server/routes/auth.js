@@ -11,7 +11,7 @@ router.route('/')
 
 router.route('/login')
   .get((req, res) => {
-    res.render('login.ejs', { message: req.flash('loginMessage') });
+    res.render('login.ejs', { message: req.flash('loginMessages') }); // changed from loginMessage to loginMessages
   });
 
 router.route('/logout')

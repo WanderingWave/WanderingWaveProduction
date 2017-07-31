@@ -12,6 +12,21 @@ module.exports.getAll = (req, res) => {
     });
 };
 
+module.exports.getOne = (req, res) => {
+
+  new models.Profile({id: 1})
+    .fetch()
+    .then(profiles => {
+      console.log('we getting dat profile');
+      res.status(200).send(profiles);
+    })
+    .catch(err => {
+      // This code indicates an outside service (the database) did not respond in time
+      console.log('no soup for you');
+      res.status(503).send(err);
+    });
+};
+
 module.exports.create = (req, res) => {
   models.Profile.forge({ username: req.body.username, password: req.body.password })
     .save()
@@ -26,21 +41,21 @@ module.exports.create = (req, res) => {
     });
 };
 
-module.exports.getOne = (req, res) => {
-  models.Profile.where({ id: req.params.id }).fetch()
-    .then(profile => {
-      if (!profile) {
-        throw profile;
-      }
-      res.status(200).send(profile);
-    })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
-    });
-};
+// module.exports.getOne = (req, res) => {
+//   models.Profile.where({ id: req.params.id }).fetch()
+//     .then(profile => {
+//       if (!profile) {
+//         throw profile;
+//       }
+//       res.status(200).send(profile);
+//     })
+//     .error(err => {
+//       res.status(500).send(err);
+//     })
+//     .catch(() => {
+//       res.sendStatus(404);
+//     });
+// };
 
 module.exports.update = (req, res) => {
   models.Profile.where({ id: req.params.id }).fetch()

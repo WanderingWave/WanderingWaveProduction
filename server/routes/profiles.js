@@ -7,6 +7,23 @@ router.route('/')
   .get(ProfileController.getAll)
   // .post(ProfileController.create)
   ;
+router.route('/userProfileInfo')
+  .get((req, res) => {
+    ProfileController.getOne(req, res);
+    // console.log('inside the user profile info');
+    // res.status(200).send('success');
+  });
+  // .post(ProfileController.create)
+  ;
+
+router.route('/userMatchHistory')
+  .get((req, res) => {
+    MatchController.getAll(req, res);
+    // console.log('inside the user profile info');
+    // res.status(200).send('success');
+  });
+  // .post(ProfileController.create)
+  ;
 
 router.route('/:id')
   .get(ProfileController.getOne)

@@ -32,15 +32,16 @@ passport.use('google', new GoogleStrategy({
 );
 
 const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
-  console.log('profile is ', oauthProfile);
   return models.Auth.where({ type, oauth_id: oauthProfile.id }).fetch({
     withRelated: ['profile']
   })
     .then(oauthAccount => {
-      console.log('----------------- we expect an authAccount ', oauthAccount);
+      console.log('----------------- we expect an authAccount ');
       if (oauthAccount) {
         throw oauthAccount;
       }
+
+      console.log('after we expect oauthaccount');
 
       if (!oauthProfile.emails || !oauthProfile.emails.length) {
         // FB users can register with a phone number, which is not exposed by Passport
@@ -66,6 +67,7 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.forge(profileInfo).save();
     })
     .tap(profile => {
+      console.log('the profile id is &&&&&&&&&&&&&&&&&&&&&&&&&&&&&*********************', id);
       return models.Auth.forge({
         type,
         profile_id: profile.get('id'),
@@ -76,17 +78,21 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       done(err, null);
     })
     .catch(oauthAccount => {
+      console.log('first catch *******************************************');
       if (!oauthAccount) {
         throw oauthAccount;
       }
+      console.log('oauthaccount related profile ', oauthAccount);
       return oauthAccount.related('profile');
     })
     .then(profile => {
+      console.log('the profile is ', profile);
       if (profile) {
         done(null, profile.serialize());
       }
     })
     .catch((err) => {
+      console.log('second catch &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
       console.log(err);
       // and there is no access to req here
       done(null, null, {

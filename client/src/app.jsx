@@ -5,7 +5,15 @@ import Connect from './components/connect.jsx';
 import Waiting from './components/waiting.jsx';
 import Gameboard from './components/gameboard.jsx';
 import ViewBars from './components/viewbars.jsx';
-import Signal from './components/signal.jsx'
+import Signal from './components/signal.jsx';
+import LeaderBoard from './components/leader-board.jsx';
+import Profile from './components/profile.jsx';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  withRouter
+} from 'react-router-dom';
 
 class App extends React.Component {
 
@@ -71,60 +79,111 @@ class App extends React.Component {
 
   handlePlay() {
 
-    this.setState({ connected: true });
-    this.socket.emit('connectPlayers', { name: this.state.name, serial: this.state.serial });
+    console.log('we made it to play here');
+    // this.setState({ connected: true });
+    // debugger;
+    // window.history.pushState({}, null, '/profile');
+    {/*<Redirect to="/your-new-location" push />*/}
+    // withRouter(({ history }) => {
+    //   history.push()
+    //   console.log('handle play ', history);
+    // });
+    // this.socket.emit('connectPlayers', { name: this.state.name, serial: this.state.serial });
 
   }
 
   render() {
-    let main = null;
-
-    //NOT CONNECTED
-    if (!this.state.connected) {
-      main =
-// <<<<<<< HEAD
-//         <div>
-//           {<ViewBars socket={this.socket}/>}
-//           <Connect
-//             handlePlay={this.handlePlay.bind(this)}
-//             handleConnect={this.handleConnect.bind(this)}
-//           />
-//         </div>;
-// =======
-      <div>
-      <Connect
-      handlePlay={this.handlePlay.bind(this)}
-      handleConnect={this.handleConnect.bind(this)}
-      />
-      <Signal socket={this.socket}/>
-      </div>;
-// >>>>>>> upstream/master
-    }
-    //WAITING FOR OPPONENT
-    if (this.state.connected && !this.state.matched) {
-      main =
-        <div>
-          <Waiting />
-        </div>;
-
-    }
-
-    //READY TO PLAY
-    if (this.state.connected && this.state.matched) {
-      main =
-        <div>
-          <Gameboard opponent={this.state.opponent}
-            socket={this.socket}
-            player1={this.state.player1}
-            player2={this.state.player2}/>
-        </div>;
-    }
     return (
       <div>
-        {main}
+        <Router>
+          <div>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/profile">Profile</Link></li>
+              <li><Link to="/leaderBoard">Leader Board</Link></li>
+            </ul>
+
+            <Route exact path="/" component={Home} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/leaderBoard" component={LeaderBoard} />
+            <Route path="/connected"
+                   render={(...props) =>
+                     <Connect {...props}
+                       handlePlay={this.handlePlay.bind(this)}
+                       handleConnect={this.handleConnect.bind(this)}
+                     />
+                   }/>
+            <Button />
+          </div>
+        </Router>
+        {(this.state.connected && !this.state.matched) && <Waiting />}
+
       </div>
     );
+//     let main = null;
+//
+//     //NOT CONNECTED
+//     if (!this.state.connected) {
+//       main =
+// // <<<<<<< HEAD
+// //         <div>
+// //           {<ViewBars socket={this.socket}/>}
+// //           <Connect
+// //             handlePlay={this.handlePlay.bind(this)}
+// //             handleConnect={this.handleConnect.bind(this)}
+// //           />
+// //         </div>;
+// // =======
+//       <div>
+//       <Connect
+//       handlePlay={this.handlePlay.bind(this)}
+//       handleConnect={this.handleConnect.bind(this)}
+//       />
+//       <Signal socket={this.socket}/>
+//       </div>;
+// // >>>>>>> upstream/master
+//     }
+//     //WAITING FOR OPPONENT
+//     if (this.state.connected && !this.state.matched) {
+//       main =
+//         <div>
+//           <Waiting />
+//         </div>;
+//
+//     }
+//
+//     //READY TO PLAY
+//     if (this.state.connected && this.state.matched) {
+//       main =
+//         <div>
+//           <Gameboard opponent={this.state.opponent}
+//             socket={this.socket}
+//             player1={this.state.player1}
+//             player2={this.state.player2}/>
+//         </div>;
+//     }
+//     return (
+//       <div>
+//         {main}
+//       </div>
+//     );
   }
 }
 
+const Button = withRouter(({ history}) => (
+  <button
+    type='button'
+    onClick={() => { history.push('/connected') }}
+  >
+    Click Me!
+  </button>
+));
+
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+);
+
 ReactDOM.render(<App/>, document.getElementById('root'));
+// ReactDOM.render(<h1>hello world</h1>, document.getElementById('root'));

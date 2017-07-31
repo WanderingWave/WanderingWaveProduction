@@ -9,3 +9,11 @@ input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     margin: 0px;
     height: 100%;
 }
+
+.green {
+  color: green;
+}
+
+.red {
+  color: darkred;
+}

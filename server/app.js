@@ -31,10 +31,14 @@ app.use('/', routes.auth);
 app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
 app.use('/messages', routes.messages);
+app.use('/api/games', routes.games);
 
 app.post('/user', (req, res) => {
   messageController.create(req, res);
   res.end("Successful Test");
 });
 
+app.get('/*', function (req, res) {
+  res.render('index.ejs');
+});
 module.exports = app;

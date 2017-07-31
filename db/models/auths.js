@@ -1,4 +1,4 @@
-const db = require('../');
+const db = require('../').bookshelf;
 const Promise = require('bluebird');
 const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
 

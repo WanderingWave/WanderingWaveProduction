@@ -1,4 +1,4 @@
-const db = require('../');
+const db = require('../').bookshelf;
 
 const Messages = db.Model.extend({
   tableName: 'messages'
