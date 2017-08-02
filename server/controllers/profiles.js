@@ -1,9 +1,11 @@
 const models = require('../../db/models');
 
-module.exports.getAll = (req, res) => {
+module.exports.getAll = (req, res, callback) => {
 
   models.Profile.fetchAll()
     .then(profiles => {
+      if(callback) { return callback(profiles); }
+
       res.status(200).send(profiles);
     })
     .catch(err => {
@@ -57,7 +59,23 @@ module.exports.create = (req, res) => {
 //     });
 // };
 
-module.exports.update = (req, res) => {
+module.exports.updateScore = (userId, win) => {
+  models.Profile.where({id: userId}).fetch()
+    .then(profile => {
+      let {attributes:{games_won}, attributes:{games_played}} = profile;
+
+      games_played++;
+      games_won += win ? 1 : 0;
+
+      return profile.save({games_played, games_won},{ method: 'update' });
+    })
+    .catch(err => {
+      console.log('we had an error updating the profile games', err);
+    });
+};
+
+module.exports.update = (req, res, callback) => {
+
   models.Profile.where({ id: req.params.id }).fetch()
     .then(profile => {
       if (!profile) {

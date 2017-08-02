@@ -1,7 +1,16 @@
-// const models = require('../../db/models');
+const models = require('../../db/models');
 const knex = require('../../db').knex;
 
+module.exports.addGame = (winner, loser) => {
 
+  let rawSql = `INSERT INTO games (winner, loser) 
+                VALUES (${winner}, ${loser})`;
+  knex.raw(rawSql)
+    .catch(err => {
+      console.log('error inserting into games table');
+      console.log(err);
+    });
+};
 
 module.exports.getGameHistory = (req, res) => {
   let rowsWin,

@@ -9,16 +9,18 @@ class Signal extends React.Component {
       leftForehead: null,
       rightForehead: null,
       rightEar: null
-    }
+    };
   }
 
   componentWillMount() {
     this.props.socket.on('signalStrength', (signal) => {
-      this.setState({ leftEar: signal[0] })
-      this.setState({ leftForehead: signal[1] })
-      this.setState({ rightForehead: signal[2] })
-      this.setState({ rightEar: signal[3] })
-    })
+      this.setState({
+        leftEar: signal[0],
+        leftForehead: signal[1],
+        rightForehead: signal[2],
+        rightEar: signal[3]
+      });
+    });
   }
 
   render() {

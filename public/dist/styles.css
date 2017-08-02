@@ -17,3 +17,7 @@ input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 .red {
   color: darkred;
 }
+
+table {
+  width: 100%;
+}
