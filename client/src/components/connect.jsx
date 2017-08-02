@@ -4,6 +4,8 @@ import Signal from './signal.jsx';
 import io from 'socket.io-client';
 import Waiting from './waiting.jsx';
 import Gameboard from './gameboard.jsx';
+import ViewBars from './view-bars.jsx';
+
 
 class Connect extends React.Component {
 
@@ -101,7 +103,13 @@ class Connect extends React.Component {
         </div>
         }
 
-        {this.state.connected && <Signal socket={this.socket} />}
+        {this.state.connected &&
+        <div>
+          <Signal socket={this.socket}/>
+          <ViewBars socket={this.socket} />
+        </div>
+        }
+
         {(this.state.connected && this.state.searching) && <Waiting />}
         {(this.state.connected && this.state.matched) &&
         <Gameboard opponent={this.state.opponent}

@@ -10,7 +10,6 @@ let server = app.listen(PORT, () => {
   console.log('Example app listening on port 3000!');
 });
 
-
 var io = require('socket.io')(server);
 var oscServer = new osc.Server(5000);
 var map = {},
@@ -168,12 +167,29 @@ oscServer.on('message', function(msg, { port }) {
 
     if (msg[0] === '/muse/elements/experimental/mellow') {
 
+      // if (!activeClients[port]) { return; }; // port doesn't exist
       if (!map[port]) { return; }
       if (!map[port].isPlaying) { // client is not playing yet. stream them just their data
         io.to(map[port].socketId).emit('testConnection', msg[1] * 100);
       }
       dataPoints[port] = dataPoints[port] || [];
       dataPoints[port].push(msg[1]);
+    }
+
+// send concenentration points
+    if (msg[0] === '/muse/elements/experimental/concentration') {
+      if (!map[port]) { return; }
+      if (!map[port].isPlaying) {
+        io.to(map[port].socketId).emit('experimentalConcentration', msg[1] * 100);
+      }
+    }
+
+// send raw EEG data - baller!
+    if (msg[0] === '/muse/elements/raw_fft0') {
+      if (!map[port]) { return; }
+      if (!map[port].isPlaying) {
+        io.to(map[port].socketId).emit('rawFFT0', msg);
+      }
     }
 
     if (msg[0] === '/muse/elements/horseshoe') {
@@ -184,7 +200,6 @@ oscServer.on('message', function(msg, { port }) {
     }
   }
 });
-
 
 let startPlaying = function(player1, player2) {
   console.log('game started for players');
@@ -201,7 +216,6 @@ let startPlaying = function(player1, player2) {
   });
 
 };
-
 
 // get the player's points
 let getPoints = function({ port }) {
