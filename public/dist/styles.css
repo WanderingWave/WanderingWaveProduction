@@ -21,3 +21,16 @@ input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 table {
   width: 100%;
 }
+
+.blue {
+  background-color: LightCyan;
+}
+
+.lavender {
+  background-color: lavender;
+}
+
+.grey {
+  background-color: aliceblue;
+}
+

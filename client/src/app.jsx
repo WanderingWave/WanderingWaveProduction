@@ -14,6 +14,22 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      navClass: ''
+    };
+  }
+
+  navClass(location) {
+
+    let map = {
+      connected: 'blue',
+      leaderBoard: 'lavender',
+      profile: 'grey'
+    };
+
+    this.setState({
+      navClass: map[location]
+    });
   }
 
   render() {
@@ -21,17 +37,29 @@ class App extends React.Component {
       <div>
         <Router>
           <div>
-            <ul>
+            <ul className={this.state.navClass}>
               <li><Link to="/">Home</Link></li>
               <li><Link to="/connected">Connect</Link></li>
               <li><Link to="/leaderBoard">Leader Board</Link></li>
               <li><Link to="/notifications">Notifications</Link></li>
             </ul>
 
-            <Route exact path="/" component={Profile} />
-            <Route path="/leaderBoard" component={LeaderBoard} />
+            <Route exact path="/" render={(...props) => {
+              return <Profile {...props}
+                       navClass={this.navClass.bind(this)} />;
+            }} />
+
+            <Route path="/leaderBoard" render={(...props) => {
+              return <LeaderBoard {...props}
+                       navClass={this.navClass.bind(this)} />;
+            }} />
+
             <Route path="/notifications" component={Notifications} />
-            <Route path="/connected" render={(...props) => <Connect {...props} />}/>
+
+            <Route path="/connected" render={(...props) => {
+              return <Connect {...props}
+                       navClass={this.navClass.bind(this)} />;
+            }} />
           </div>
         </Router>
 

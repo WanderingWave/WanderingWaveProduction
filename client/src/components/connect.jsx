@@ -56,6 +56,10 @@ class Connect extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.props.navClass('connected');
+  }
+
   handlePlay() {
     this.setState({searching: true});
     this.socket.emit('startPlaying', { name: this.state.name, serial: this.state.serial });
