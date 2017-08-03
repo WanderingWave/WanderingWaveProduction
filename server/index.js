@@ -33,7 +33,6 @@ var map = {},
       arr[games_won].push({id, display, games_won});
     });
 
-
     let lastNode = {};
     leaderBoard.tail = lastNode;
     let lastArr = arr[arr.length - 1];
@@ -178,7 +177,6 @@ oscServer.on('message', function(msg, { port }) {
     }
 
     // send concentration points
-    // owned by Chris Aaker
     // owned by Chris Aaker, commited by RN through slack
     if (msg[0] === '/muse/elements/experimental/concentration') {
       if (!map[port]) { return; }
