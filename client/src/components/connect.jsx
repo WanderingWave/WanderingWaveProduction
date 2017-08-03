@@ -1,5 +1,4 @@
 import React from 'react';
-// import ViewBars from './viewbars.jsx';
 import Signal from './signal.jsx';
 import io from 'socket.io-client';
 import Waiting from './waiting.jsx';
@@ -23,30 +22,32 @@ class Connect extends React.Component {
       player2: ''
 
     };
-    this.name = localStorage.getItem('name') || '';
     this.serial = localStorage.getItem('serial') || '';
   }
 
   componentWillMount() {
     this.socket = io.connect();
 
-    this.socket.on('matched', function(obj) {
-      console.log(obj);
+    this.socket.on('matched', function({opponent, opponentUserId, key, left}) {
+
       this.setState({
         matched: true,
         searching: false,
-        opponent: obj.opponent
+        opponent: opponent,
+        opponentUserId: opponentUserId,
+        key: key
       });
 
-      if (obj.left) {
+      localStorage.setItem('left', left);
+      if (left) {
         this.setState({
-          player1: localStorage.getItem('name'),
-          player2: obj.opponent
+          player1: localStorage.getItem('display'),
+          player2: opponent
         });
       } else {
         this.setState({
-          player1: obj.opponent,
-          player2: localStorage.getItem('name')
+          player1: opponent,
+          player2: localStorage.getItem('display')
         });
       }
     }.bind(this));
@@ -63,13 +64,14 @@ class Connect extends React.Component {
 
   handleConnect() {
 
-    let name = document.getElementById('nickname').value;
     let serial = document.getElementById('serial').value;
     serial = serial.toUpperCase();
-    this.setState({ name, serial });
 
-    localStorage.setItem('name', name);
+
+    let name = localStorage.getItem('display')
     localStorage.setItem('serial', serial);
+
+    this.setState({name, serial});
 
     console.log('time to connect for a stream');
     this.setState({
@@ -77,42 +79,37 @@ class Connect extends React.Component {
       playButton: true
     });
 
-    this.socket.emit('streamConnection', {name, serial});
+    this.socket.emit('streamConnection', {
+      name,
+      serial,
+      userId: localStorage.getItem('userId')
+    });
 
   }
   render() {
-    console.log('this are the props ', this.props);
     return (
       <div>
         {!this.state.matched &&
         <div>
-          <h1 className='welcome-message'> Welcome Back! </h1>
-          <h3 className='instructions'> Enter a nickname and your headset number to start a game</h3>
-          <input className='nickname'
-                 id="nickname"
-                 placeholder="James"
-                 defaultValue={this.name}
-          />
+          <h3 className='instructions'> Enter a headset number to start a game</h3>
           <input className='serial'
                  id="serial"
-                 placeholder="3D62 or 5394"
+                 placeholder="3D62 or 4B9F"
                  defaultValue={this.serial}
           />
-          <button onClick={this.handleConnect.bind(this)}>Connect</button>
+          <button onClick={this.handleConnect.bind(this)} disabled={this.state.playButton}>Connect</button>
           <button onClick={this.handlePlay.bind(this)} disabled={!this.state.playButton}>Play</button>
         </div>
         }
 
-        {this.state.connected &&
-        <div>
-          <Signal socket={this.socket}/>
-          <ViewBars socket={this.socket} />
-        </div>
-        }
+        {(this.state.connected && !this.state.matched) && <Signal socket={this.socket} />}
+        {this.state.connected && <ViewBars socket={this.socket} matched={this.state.matched} />}
 
         {(this.state.connected && this.state.searching) && <Waiting />}
         {(this.state.connected && this.state.matched) &&
         <Gameboard opponent={this.state.opponent}
+                   opponentUserId={this.state.opponentUserId}
+                   position={this.state.key}
                    socket={this.socket}
                    player1={this.state.player1}
                    player2={this.state.player2}

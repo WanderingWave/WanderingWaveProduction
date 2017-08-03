@@ -105,10 +105,14 @@ class ViewBars extends React.Component {
       <div>
         <h3>Mellow Level</h3>
         <div id="mellow"></div>
-        <h3>Concentration Level</h3>
-        <div id="concentration"></div>
-        <h3>Raw EEG</h3>
-        <div id="raw"></div>
+        {!this.props.matched &&
+          <div>
+            <h3>Concentration Level</h3>
+            <div id="concentration"></div>
+            <h3>Raw EEG</h3>
+            <div id="raw"></div>
+          </div>
+        }
       </div>
     );
   }

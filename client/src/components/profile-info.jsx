@@ -1,12 +1,16 @@
 import React from 'react';
 
-const ProfileInfo = ({profile}) => {
+const ProfileInfo = ({profile, rank}) => {
   console.log('this is the profile obj ', profile);
   return (
     <div>
       <h1>{profile.display}</h1>
-      <h3>Rank: 3</h3>
-      <h3>Wins: {Math.floor(profile.games_won / profile.games_played * 100)}%</h3>
+      <h3>Rank: {rank}</h3>
+      <h3>
+        Wins: {profile.games_won ?
+        Math.floor(profile.games_won / profile.games_played * 100) + "%" :
+        "Can't win if you don't play"}
+      </h3>
       <hr />
     </div>
   );
