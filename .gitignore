@@ -40,3 +40,5 @@ bower_components/
 *.idea
 *.muse
 *.lock
+
+logfile

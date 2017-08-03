@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import 'jqueryui';
 
+// file owned by Chris Aaker, commited by RN through slack
 class ViewBars extends React.Component {
   constructor (props) {
     // initialize queues
