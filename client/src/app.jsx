@@ -37,12 +37,13 @@ class App extends React.Component {
       <div>
         <Router>
           <div>
-            <ul className={this.state.navClass}>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/connected">Connect</Link></li>
-              <li><Link to="/leaderBoard">Leader Board</Link></li>
-              <li><Link to="/notifications">Notifications</Link></li>
-            </ul>
+            {/*<div className={this.state.navClass}>*/}
+            <div className='nav'>
+              <div><Link className="nav-item" to="/">Home</Link></div>
+              <div><Link className="nav-item" to="/connected">Connect</Link></div>
+              <div><Link className="nav-item" to="/leaderBoard">Leader Board</Link></div>
+              <div><Link className="nav-item" to="/notifications">Notifications</Link></div>
+            </div>
 
             <Route exact path="/" render={(...props) => {
               return <Profile {...props}

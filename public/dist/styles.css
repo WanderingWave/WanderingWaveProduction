@@ -22,15 +22,19 @@ table {
   width: 100%;
 }
 
-.blue {
-  background-color: LightCyan;
+.blue, .grey, .lavender, .nav {
+  width: 100%;
+  height: 65px;
+}
+.blue, .nav {
+  background-image: linear-gradient(94deg, #208dd7, #8ad0c5);
 }
 
-.lavender {
-  background-color: lavender;
-}
-
-.grey {
-  background-color: aliceblue;
+.nav-item {
+  z-index: 100;
+  color: white;
+  font-weight: bold;
+  margin-left: 100px;
+  float: left;
 }
 
