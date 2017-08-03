@@ -16,7 +16,7 @@ module.exports.getAll = (req, res, callback) => {
 
 module.exports.getOne = (req, res) => {
 
-  new models.Profile({id: 1})
+  new models.Profile({id: req.user.id})
     .fetch()
     .then(profiles => {
       console.log('we getting dat profile');
