@@ -111,3 +111,18 @@ table {
 }
 
 
+/*gameboard
+*/
+
+.ball {
+  width: 130px;
+  height: 130px;
+  background-color: #e46696;
+}
+
+.line-copy {
+  width: 3px;
+  height: 459px;
+  border: solid 2px #e46696;
+}
+

@@ -31,19 +31,24 @@ class Gameboard extends React.Component {
           this.setState({ winner: this.props.player2 });
         }
 
-        let onLeft = localStorage.getItem('left'),
-          myUserId = localStorage.getItem('userId'),
-          myName = localStorage.getItem('display'),
-          opponentUserId = this.props.opponentUserId,
-          opponentName = this.props.opponent,
-          key = this.props.position;
+        let onLeft = localStorage.getItem('left');
+        let myUserId = localStorage.getItem('userId');
+        let myName = localStorage.getItem('display');
+        let opponentUserId = this.props.opponentUserId;
+        let opponentName = this.props.opponent;
+        let key = this.props.position;
 
-        let winner = opponentUserId,
-          loser = myUserId,
-          winnerName = opponentName;
+        let winner = opponentUserId;
+        let loser = myUserId;
+        let winnerName = opponentName;
 
-        let bool = function(v) { return v==="false" || v==="null" || v==="NaN" || v==="undefined" || v==="0" ? false : !!v; };
-        if(bool(onLeft) && leftWon || !bool(onLeft) && !leftWon) {
+        // refactor
+        let bool = function(v) {
+          return ( v === "false" || v === "null" || v === "NaN" || v === "undefined"
+            || v === "0" ) ? false : !!v;
+        };
+
+        if (bool(onLeft) && leftWon || !bool(onLeft) && !leftWon) {
           winner = myUserId;
           loser = opponentUserId;
           winnerName = myName;
@@ -94,18 +99,21 @@ class Gameboard extends React.Component {
 
     if (this.state.cx < 1000 && this.state.cx > 140) {
       return (
+
         <div>
           <h1 style={Player1} className="player-1">{this.props.player1}</h1>
           <h1 style={Player2} className="player-2">{this.props.player2}</h1>
-                <svg width="1140" height="450">
-                <circle className ="ball" cx={570} cy={this.state.cy} r={this.state.radius} stroke="blue" strokeWidth="4" fill="blue" />
-                  <line x1="100" y1="25" x2="100" y2="425" style={{stroke:"blue", strokeWidth: 10}} />
-                  <line x1="1040" y1="25" x2="1040" y2="425" style={{stroke:"blue", strokeWidth: 10}} />
-                </svg>
+
+            <svg width="1140" height="450">
+            <circle className ="ball" cx={570} cy={this.state.cy} r={this.state.radius} stroke="blue" strokeWidth="4" fill="blue" />
+              <line x1="100" y1="25" x2="100" y2="425" style={{stroke:"blue", strokeWidth: 10}} />
+              <line x1="1040" y1="25" x2="1040" y2="425" style={{stroke:"blue", strokeWidth: 10}} />
+            </svg>
 
         </div>
       );
     } else {
+
       return (
         <div>
           <h1>Gameover</h1>
@@ -113,8 +121,11 @@ class Gameboard extends React.Component {
           <LeaderBoard />
         </div>
       );
+
     }
   }
+
+
 };
 
 export default Gameboard;

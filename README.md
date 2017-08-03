@@ -4,8 +4,8 @@ Wandering Wave let users move a ball with their brain.
 
 ## Team
 
-- Ruben
 - Kenneth
+- Ruben
 - Kenly
 - Chris
 
