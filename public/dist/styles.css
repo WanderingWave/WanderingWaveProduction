@@ -35,6 +35,9 @@ input::-webkit-input-placeholder {
 
 
 
+
+
+
 /*NAV ITEMS*/
 
 .nav {
@@ -63,6 +66,9 @@ a:visited {
   letter-spacing: -0.4px;
   color: #ffffff;
 }
+
+
+
 
 /*LEADERBOARD*/
 
@@ -108,6 +114,9 @@ h1.leaderboard {
   color: #208dd7;
 }
 
+
+
+
 /*PROFILE*/
 
 .profile-hero-container {
@@ -144,4 +153,66 @@ h1.leaderboard {
   font-weight: 300;
   letter-spacing: -0.4px;
   color: #208dd7;
+}
+
+
+
+
+/*CONNECT*/
+
+.instructions {
+
+  width: 477px;
+  height: 46px;
+  font-family: Rubik;
+  font-size: 38px;
+  letter-spacing: -1px;
+  text-align: center;
+  color: #e46696;
+}
+
+.connect-button {
+  margin: 67px;
+  width: 242px;
+  height: 46px;
+  border-radius: 100px;
+  background-color: #e46696;
+  border: none;
+  font-family: Rubik;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.connect-background {
+  margin-top: 65px;
+  background-color: #fdeff3;
+  height: 800px;
+}
+
+.connect-container {
+  background-color: #fdeff3;
+  width: 100%;
+  padding: 0;
+  margin-top: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  align-items: space-around;
+}
+
+.serial {
+  background: rgba(0, 0, 0, 0);
+  outline: none;
+  margin: 20px;
+  width: 200px;
+  height: 40px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid 2px #e46696;
 }

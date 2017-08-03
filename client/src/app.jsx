@@ -22,9 +22,9 @@ class App extends React.Component {
         <Router>
           <div className="nav">
               <div><Link className="nav-item" to="/">Home</Link></div>
-              <div className="nav-item"><Link to="/connected">Connect</Link></div>
-              <div className="nav-item"><Link to="/leaderBoard">Leader Board</Link></div>
-              <div className="nav-item"><Link to="/notifications">Notifications</Link></div>
+              <div><Link className="nav-item" to="/connected">Connect</Link></div>
+              <div><Link className="nav-item" to="/leaderBoard">Leader Board</Link></div>
+              <div><Link className="nav-item" to="/notifications">Notifications</Link></div>
 
             <Route exact path="/" component={Profile} />
             <Route path="/leaderBoard" component={LeaderBoard} />

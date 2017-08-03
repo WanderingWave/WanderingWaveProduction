@@ -87,16 +87,16 @@ class Connect extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className='connect-background'>
         {!this.state.matched &&
-        <div>
-          <h3 className='instructions'> Enter a headset number to start a game</h3>
+        <div className='connect-container'>
+          <h3 className='instructions'> Enter your headset number</h3>
           <input className='serial'
                  id="serial"
                  placeholder="3D62 or 4B9F"
                  defaultValue={this.serial}
           />
-          <button onClick={this.handleConnect.bind(this)} disabled={this.state.playButton}>Connect</button>
+          <button className='connect-button' onClick={this.handleConnect.bind(this)} disabled={this.state.playButton}>Check Signal Strength</button>
           <button onClick={this.handlePlay.bind(this)} disabled={!this.state.playButton}>Play</button>
         </div>
         }
