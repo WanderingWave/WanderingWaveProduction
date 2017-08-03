@@ -16,7 +16,7 @@ module.exports.getAll = (req, res, callback) => {
 
 module.exports.getOne = (req, res) => {
 
-  new models.Profile({id: 1})
+  new models.Profile({id: req.user.id})
     .fetch()
     .then(profiles => {
       console.log('we getting dat profile');
@@ -42,22 +42,6 @@ module.exports.create = (req, res) => {
       res.status(500).send(err);
     });
 };
-
-// module.exports.getOne = (req, res) => {
-//   models.Profile.where({ id: req.params.id }).fetch()
-//     .then(profile => {
-//       if (!profile) {
-//         throw profile;
-//       }
-//       res.status(200).send(profile);
-//     })
-//     .error(err => {
-//       res.status(500).send(err);
-//     })
-//     .catch(() => {
-//       res.sendStatus(404);
-//     });
-// };
 
 module.exports.updateScore = (userId, win) => {
   models.Profile.where({id: userId}).fetch()
@@ -93,22 +77,3 @@ module.exports.update = (req, res, callback) => {
       res.sendStatus(404);
     });
 };
-
-// module.exports.deleteOne = (req, res) => {
-//   models.Profile.where({ id: req.params.id }).fetch()
-//     .then(profile => {
-//       if (!profile) {
-//         throw profile;
-//       }
-//       return profile.destroy();
-//     })
-//     .then(() => {
-//       res.sendStatus(200);
-//     })
-//     .error(err => {
-//       res.status(503).send(err);
-//     })
-//     .catch(() => {
-//       res.sendStatus(404);
-//     });
-// };
