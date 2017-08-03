@@ -1,11 +1,9 @@
 import React from 'react';
-// import ViewBars from './viewbars.jsx';
 import Signal from './signal.jsx';
 import io from 'socket.io-client';
 import Waiting from './waiting.jsx';
 import Gameboard from './gameboard.jsx';
 import ViewBars from './view-bars.jsx';
-
 
 class Connect extends React.Component {
 
