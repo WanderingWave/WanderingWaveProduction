@@ -20,13 +20,11 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          <div>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/connected">Connect</Link></li>
-              <li><Link to="/leaderBoard">Leader Board</Link></li>
-              <li><Link to="/notifications">Notifications</Link></li>
-            </ul>
+          <div className="nav">
+              <div><Link className="nav-item" to="/">Home</Link></div>
+              <div className="nav-item"><Link to="/connected">Connect</Link></div>
+              <div className="nav-item"><Link to="/leaderBoard">Leader Board</Link></div>
+              <div className="nav-item"><Link to="/notifications">Notifications</Link></div>
 
             <Route exact path="/" component={Profile} />
             <Route path="/leaderBoard" component={LeaderBoard} />
