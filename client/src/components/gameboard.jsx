@@ -126,6 +126,6 @@ class Gameboard extends React.Component {
   }
 
 
-};
+}
 
 export default Gameboard;
