@@ -1,7 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
-import io from 'socket.io-client';
-import _ from 'underscore';
+import LeaderBoard from "./leader-board.jsx";
 
 class Gameboard extends React.Component {
 
@@ -14,25 +13,43 @@ class Gameboard extends React.Component {
       cy: '225',
       radius: '40'
     };
-
-    // this.changeBallSize = this.changeBallSize.bind(this);
-    // this.moveTheBall = this.moveTheBall.bind(this);
-    // this.getMellowData = this.getMellowData.bind(this);
-    // this.checkWinner = this.checkWinner.bind(this);
-
   }
 
   componentDidMount() {
     this.props.socket.on('score', function(val) {
-      console.log('data', val)
+      console.log('data', val);
       if (this.state.cx < 1000 && this.state.cx > 140) {
         this.moveTheBall(val.difference);
       } else {
+        let leftWon;
         if (this.state.cx >= 1000) {
+          leftWon = true;
           this.setState({ winner: this.props.player1 });
+
         } else if (this.state.cx <= 140) {
+          leftWon = false;
           this.setState({ winner: this.props.player2 });
         }
+
+        let onLeft = localStorage.getItem('left'),
+          myUserId = localStorage.getItem('userId'),
+          myName = localStorage.getItem('display'),
+          opponentUserId = this.props.opponentUserId,
+          opponentName = this.props.opponent,
+          key = this.props.position;
+
+        let winner = opponentUserId,
+          loser = myUserId,
+          winnerName = opponentName;
+
+        let bool = function(v) { return v==="false" || v==="null" || v==="NaN" || v==="undefined" || v==="0" ? false : !!v; };
+        if(bool(onLeft) && leftWon || !bool(onLeft) && !leftWon) {
+          winner = myUserId;
+          loser = opponentUserId;
+          winnerName = myName;
+        }
+
+        this.props.socket.emit('gameOver', {winner, loser, key, winnerName});
       }
     }.bind(this));
   }
@@ -86,14 +103,15 @@ class Gameboard extends React.Component {
                   <line x1="1040" y1="25" x2="1040" y2="425" style={{stroke:"blue", strokeWidth: 10}} />
                 </svg>
 
-              </div>
+        </div>
       );
     } else {
       return (
         <div>
-                <h1>Gameover</h1>
-                <h3>{this.state.winner} won the game!</h3>
-              </div>
+          <h1>Gameover</h1>
+          <h3>{this.state.winner} won the game!</h3>
+          <LeaderBoard />
+        </div>
       );
     }
   }

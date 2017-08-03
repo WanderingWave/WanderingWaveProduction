@@ -14,24 +14,13 @@ class LeaderBoard extends React.Component {
     this.socket.emit('leaderBoard');
     this.socket.on('leaderBoard', (top) => {
       this.setState(top);
-
-      console.log('leaderboard connected ------', top);
     });
-  }
-
-
-  updateLeaderBoard() {
-    console.log('button clicked');
-
-    this.socket.emit('gameOver', {winner: 1, loser: 2, key: 5, winnerName: 'john'});
   }
 
   render() {
     return (
       <div>
-
-        <button onClick={this.updateLeaderBoard.bind(this)}> update leader </button>
-        <h1>Leader Board</h1>
+        <h3>Leader Board</h3>
         <table>
           <tbody>
           <tr>
