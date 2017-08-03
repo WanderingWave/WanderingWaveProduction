@@ -4,7 +4,7 @@ let stateP = {
   mellow: 0,
   concentration: 0,
   rawFFT0: 0
-}
+};
 
 const pReducer = function (state = stateP, action) {
   let newState = Object.assign({}, state);
