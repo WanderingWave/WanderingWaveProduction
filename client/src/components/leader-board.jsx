@@ -15,25 +15,27 @@ class LeaderBoard extends React.Component {
     this.socket.on('leaderBoard', (top) => {
       this.setState(top);
     });
+    this.props.navClass('leaderBoard');
   }
 
   render() {
     return (
       <div>
-        <h3>Leader Board</h3>
-        <table>
+           <div className="hero"></div>
+       <h1 className="leaderboard">Leader Board</h1>
+        <table className="leaderboard-table">
           <tbody>
           <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Wins</th>
+            <th className="table-title">Rank</th>
+            <th className="table-title">Name</th>
+            <th className="table-title">Wins</th>
           </tr>
           {this.state.top.map((player, index) => {
             return (
               <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{player.display}</td>
-                <td>{player.games_won}</td>
+                <td className="row-entry">{index + 1}</td>
+                <td className="row-entry">{player.display}</td>
+                <td className="row-entry">{player.games_won}</td>
               </tr>
             );
           })}

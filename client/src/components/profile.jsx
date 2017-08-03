@@ -43,6 +43,9 @@ class Profile extends React.Component {
       });
   }
 
+  componentDidMount() {
+    this.props.navClass('profile');
+  }
 
   render() {
     return (

@@ -1,17 +1,25 @@
 import React from 'react';
 
+
 const ProfileInfo = ({profile, rank}) => {
   console.log('this is the profile obj ', profile);
   return (
     <div>
-      <h1>{profile.display}</h1>
-      <h3>Rank: {rank}</h3>
-      <h3>
-        Wins: {profile.games_won ?
+     <div className="hero"></div>
+     <div className="profile-hero-container">
+      <h1 className="profile-hero-item-name">{profile.display}</h1>
+      <div className="profile-hero-item">
+        <h3 className="profile-number">{rank}</h3>
+        <h3 className="profile-caption">Rank</h3>
+      </div>
+      <div className="profile-hero-item">
+        <h3 className="profile-number">{profile.games_won ?
         Math.floor(profile.games_won / profile.games_played * 100) + "%" :
-        "Can't win if you don't play"}
-      </h3>
+        "0%"}</h3>
+        <h3 className="profile-caption">Games Won</h3>
+      </div>
       <hr />
+     </div>
     </div>
   );
 };
