@@ -14,22 +14,54 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      navClass: ''
+    };
+  }
+
+  navClass(location) {
+
+    let map = {
+      connected: 'blue',
+      leaderBoard: 'lavender',
+      profile: 'grey'
+    };
+
+    this.setState({
+      navClass: map[location]
+    });
   }
 
   render() {
     return (
       <div>
         <Router>
-          <div className="nav">
-              <div><Link className="nav-item" to="/">Home</Link></div>
-              <div className="nav-item"><Link to="/connected">Connect</Link></div>
-              <div className="nav-item"><Link to="/leaderBoard">Leader Board</Link></div>
-              <div className="nav-item"><Link to="/notifications">Notifications</Link></div>
 
-            <Route exact path="/" component={Profile} />
-            <Route path="/leaderBoard" component={LeaderBoard} />
+          <div>
+            {/*<div className={this.state.navClass}>*/}
+            <div className='nav'>
+              <div><Link className="nav-item" to="/">Home</Link></div>
+              <div><Link className="nav-item" to="/connected">Connect</Link></div>
+              <div><Link className="nav-item" to="/leaderBoard">Leader Board</Link></div>
+              <div><Link className="nav-item" to="/notifications">Notifications</Link></div>
+            </div>
+
+            <Route exact path="/" render={(...props) => {
+              return <Profile {...props}
+                       navClass={this.navClass.bind(this)} />;
+            }} />
+
+            <Route path="/leaderBoard" render={(...props) => {
+              return <LeaderBoard {...props}
+                       navClass={this.navClass.bind(this)} />;
+            }} />
+
             <Route path="/notifications" component={Notifications} />
-            <Route path="/connected" render={(...props) => <Connect {...props} />}/>
+
+            <Route path="/connected" render={(...props) => {
+              return <Connect {...props}
+                       navClass={this.navClass.bind(this)} />;
+            }} />
           </div>
         </Router>
 

@@ -15,6 +15,7 @@ class LeaderBoard extends React.Component {
     this.socket.on('leaderBoard', (top) => {
       this.setState(top);
     });
+    this.props.navClass('leaderBoard');
   }
 
   render() {

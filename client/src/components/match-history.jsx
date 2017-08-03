@@ -4,13 +4,22 @@ const MatchHistory = ({games, user}) => {
   return (
     <div>
       <h3>Match History</h3>
-      {games.map((game, index) => {
-        return (
-          <div className={game.win ? 'green' : 'red'} key={index}>
-            {user} vs {game.display}
-          </div>
-        );
-      })}
+      <table>
+        <tbody>
+        <tr>
+          <th>Opponent</th>
+          <th>Result</th>
+        </tr>
+        {games.map((game, index) => {
+          return (
+            <tr key={index}>
+              <td>{game.display}</td>
+              <td>{game.win ? 'W' : 'L'}</td>
+            </tr>
+          );
+        })}
+        </tbody>
+      </table>
       <hr />
     </div>
   );
