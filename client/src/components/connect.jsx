@@ -5,7 +5,6 @@ import Waiting from './waiting.jsx';
 import Gameboard from './gameboard.jsx';
 import ViewBars from './view-bars.jsx';
 
-
 class Connect extends React.Component {
 
   constructor(props) {

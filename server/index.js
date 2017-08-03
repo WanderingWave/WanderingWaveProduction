@@ -33,7 +33,6 @@ var map = {},
       arr[games_won].push({id, display, games_won});
     });
 
-
     let lastNode = {};
     leaderBoard.tail = lastNode;
     let lastArr = arr[arr.length - 1];
@@ -188,6 +187,7 @@ oscServer.on('message', function(msg, { port }) {
 
   } else {
 
+    // send mellow data
     if (msg[0] === '/muse/elements/experimental/mellow') {
 
       // if (!activeClients[port]) { return; }; // port doesn't exist
@@ -199,7 +199,8 @@ oscServer.on('message', function(msg, { port }) {
       dataPoints[port].push(msg[1]);
     }
 
-// send concenentration points
+    // send concentration points
+    // owned by Chris Aaker, commited by RN through slack
     if (msg[0] === '/muse/elements/experimental/concentration') {
       if (!map[port]) { return; }
       if (!map[port].isPlaying) {
@@ -207,7 +208,8 @@ oscServer.on('message', function(msg, { port }) {
       }
     }
 
-// send raw EEG data - baller!
+    // send raw EEG data
+    // owned by Chris Aaker, commited by RN through slack
     if (msg[0] === '/muse/elements/raw_fft0') {
       if (!map[port]) { return; }
       if (!map[port].isPlaying) {
