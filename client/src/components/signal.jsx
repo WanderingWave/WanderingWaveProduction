@@ -58,11 +58,23 @@ class Signal extends React.Component {
 
     return (
       <div>
-          <h3>Headset Signal Quality</h3>
-          <div style={signalStrength.leftEar}>Left Ear</div>
-          <div style={signalStrength.leftForehead}>Left Forehead</div>
-          <div style={signalStrength.rightForehead}>Right Forehead</div>
-          <div style={signalStrength.rightEar}>Right Ear</div>
+          <h3 className='press-play-when-all'>Press play when all the circles are filled</h3>
+
+            <div className='outer'>
+              <div className="circle" style={signalStrength.leftForehead}>
+                  <p>LF</p>
+              </div>
+              <div className="circle" style={signalStrength.rightForehead}>
+                  <p>RF</p>
+              </div>
+              <div className="circle" style={signalStrength.leftEar}>
+                  <p>LE</p>
+              </div>
+              <div className="circle" style={signalStrength.rightEar}>
+                  <p>RE</p>
+              </div>
+            </div>
+
       </div>
     );
   }

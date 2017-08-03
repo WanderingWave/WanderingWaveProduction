@@ -34,7 +34,5 @@ PRO FLOW CHEAT SHEET
 
 MUSE END POINTS
 '/muse/config'
-'/muse/elements/jaw_clench'
 '/muse/elements/experimental/mellow'
 '/muse/elements/experimental/concentration'
-'/muse/elements/blink'

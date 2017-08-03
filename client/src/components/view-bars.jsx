@@ -5,6 +5,7 @@ import 'jqueryui';
 // file owned by Chris Aaker, commited by RN through slack
 class ViewBars extends React.Component {
   constructor (props) {
+
     // initialize queues
     ViewBars.queueMellow = Array(20).fill(50);
     ViewBars.queueConcentration = Array(20).fill(50);
@@ -78,7 +79,6 @@ class ViewBars extends React.Component {
       console.log('EEG', avgVal);
       val = '#' + val + '0000';
     }
-    $(dom).css({ 'background': '#ffffff'});
     $( dom + ' > div').css({ 'background': val });
     $( dom ).progressbar({
       value: avgVal
@@ -103,15 +103,15 @@ class ViewBars extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h3>Mellow Level</h3>
-        <div id="mellow"></div>
+      <div id = "ViewBars">
+        <h3 className='concentration'>Mellow</h3>
+        <div className='rectangle-6' id="mellow"></div>
         {!this.props.matched &&
           <div>
-            <h3>Concentration Level</h3>
-            <div id="concentration"></div>
-            <h3>Raw EEG</h3>
-            <div id="raw"></div>
+            <h3 className='concentration' >Concentration</h3>
+            <div className='rectangle-6' id="concentration"></div>
+            <h3 className='concentration'>EEG</h3>
+            <div className='rectangle-6' id="raw"></div>
           </div>
         }
       </div>

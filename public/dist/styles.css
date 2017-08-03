@@ -21,3 +21,93 @@ input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 table {
   width: 100%;
 }
+
+/*
+*/
+
+.rectangle-6 {
+  width: 278.9px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: #f8d5e1;
+}
+
+.concentration {
+  width: 111px;
+  height: 22px;
+  font-family: Rubik;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -0.4px;
+  color: #e46696;
+}
+
+
+/* ViewBars and Signal
+*/
+
+#ViewBars {
+  float: left;
+}
+
+.outer{
+  margin-top: 30px;
+  margin-right: 100px;
+  width: 190px;
+  height: 190px;
+  float: left;
+
+}
+
+.circle{
+  margin: 20px;
+  position:relative;
+  float: left;
+  background-color: #ea7366;
+  width:50px;
+  height:50px;
+  text-align:center;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+}
+
+.circle p
+{
+  font:20px Rubik;
+  color:#fff;
+  vertical-align:middle;
+  height:25px;
+  position: inherit;
+  top:25%;
+}
+
+.press-play-when-all {
+  width: 644px;
+  height: 46px;
+  font-family: Rubik;
+  font-size: 32px;
+  letter-spacing: -1px;
+  text-align: left;
+  color: #e46696;
+}
+
+.play-game {
+  position: relative;
+  top: 10px;
+  font-family: Rubik;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.rectangle-3 {
+  width: 240px;
+  height: 46px;
+  border-radius: 100px;
+  background-color: #e46696;
+}
+
+

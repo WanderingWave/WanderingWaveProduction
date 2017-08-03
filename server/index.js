@@ -275,7 +275,7 @@ let updateGame = function() {
     [player1, player2].forEach(player => {
       let calmScore = null;
       calmScore = getPoints(player) * 100;
-      console.log('calmScore', calmScore, player.port);
+      //console.log('calmScore', calmScore, player.port);
       io.to(player.socketId).emit('score', { difference, calmScore });
     });
 
