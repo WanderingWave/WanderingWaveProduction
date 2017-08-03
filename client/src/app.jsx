@@ -36,6 +36,7 @@ class App extends React.Component {
     return (
       <div>
         <Router>
+
           <div>
             {/*<div className={this.state.navClass}>*/}
             <div className='nav'>
