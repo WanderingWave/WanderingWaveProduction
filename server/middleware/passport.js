@@ -67,7 +67,6 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.forge(profileInfo).save();
     })
     .tap(profile => {
-
       return models.Auth.forge({
         type,
         profile_id: profile.get('id'),

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const MatchHistory = ({games, user}) => {
-  console.log('the games are ***********', games);
   return (
     <div>
       <h3>Match History</h3>

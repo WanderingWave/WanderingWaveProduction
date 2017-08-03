@@ -33,7 +33,6 @@ var map = {},
       arr[games_won].push({id, display, games_won});
     });
 
-
     let lastNode = {};
     leaderBoard.tail = lastNode;
     let lastArr = arr[arr.length - 1];
@@ -92,6 +91,10 @@ let updateLeaderBoard = function(id, display) {
     node.next.prev = node.prev;
     node.next = node.prev;
     node.prev = node.prev.prev;
+
+    if(node.prev) {
+      node.prev.next = node;
+    }
   }
 
   if(!node.prev) {
@@ -112,10 +115,29 @@ io.sockets.on('connection', function(socket) {
     socket.emit('leaderBoard', {top: arrTop});
   });
 
-  socket.on('gameOver', ({winner, loser, key, winnerName}) => {
+  socket.on('playerRank', ({userId}) => {
+    let rank = 'Play a game to rank up';
+    debugger;
+    if(leaderBoard[userId]) {
+      let count = 1;
+      let node = leaderBoard[userId];
 
-    // if(!playing[key]) { return; } // already handled this game
-    // playing[key] = null; //stop the game
+      while(node.prev) {
+        if(node.games_won !== node.prev.games_won) {
+          count++;
+        }
+        node = node.prev;
+      }
+      rank = count;
+    }
+
+    socket.emit('playerRank', {rank});
+  });
+  socket.on('gameOver', ({winner, loser, key, winnerName}) => {
+    console.log('the winner is ', winner, ' \n the loser is ', loser, ' \nthe key is ', key);
+
+    if(!playing[key]) { return; } // already handled this game
+    playing[key] = null; //stop the game
 
     GameController.addGame(winner, loser); //update the db
 
@@ -127,12 +149,12 @@ io.sockets.on('connection', function(socket) {
     // update the leader board, if win
     updateLeaderBoard(winner, winnerName);
 
-    socket.emit('leaderBoard', {top: getTop(5)});
+    io.sockets.emit('leaderBoard', {top: getTop(5)});
   });
 
-  socket.on('streamConnection', ({ name, serial }) => {
+  socket.on('streamConnection', ({ name, serial, userId }) => {
     console.log('connection starting to stream');
-    clients[serial] = { serial, name, socketId: socket.id, isPlaying: false };
+    clients[serial] = { userId, serial, name, socketId: socket.id, isPlaying: false };
     console.log(clients[serial]);
 
   });
@@ -165,6 +187,7 @@ oscServer.on('message', function(msg, { port }) {
 
   } else {
 
+    // send mellow data
     if (msg[0] === '/muse/elements/experimental/mellow') {
 
       // if (!activeClients[port]) { return; }; // port doesn't exist
@@ -176,7 +199,8 @@ oscServer.on('message', function(msg, { port }) {
       dataPoints[port].push(msg[1]);
     }
 
-// send concenentration points
+    // send concentration points
+    // owned by Chris Aaker, commited by RN through slack
     if (msg[0] === '/muse/elements/experimental/concentration') {
       if (!map[port]) { return; }
       if (!map[port].isPlaying) {
@@ -184,7 +208,8 @@ oscServer.on('message', function(msg, { port }) {
       }
     }
 
-// send raw EEG data - baller!
+    // send raw EEG data
+    // owned by Chris Aaker, commited by RN through slack
     if (msg[0] === '/muse/elements/raw_fft0') {
       if (!map[port]) { return; }
       if (!map[port].isPlaying) {
@@ -210,9 +235,15 @@ let startPlaying = function(player1, player2) {
   player2.pair = player1;
 
   let key = playing.push([player1, player2]);
+  key--;
   [player1, player2].forEach((player, index) => {
-    console.log('start streaming for ', player.name, ' on socket ', player.socketId);
-    io.to(player.socketId).emit('matched', { opponent: player.pair.name, left: !index, key: --key });
+    console.log('start playing for ', player.name, ' on socket ', player.socketId);
+    io.to(player.socketId).emit('matched', {
+      opponent: player.pair.name,
+      opponentUserId: player.pair.userId,
+      left: !index,
+      key: key
+    });
   });
 
 };

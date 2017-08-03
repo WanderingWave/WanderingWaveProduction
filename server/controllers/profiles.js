@@ -43,22 +43,6 @@ module.exports.create = (req, res) => {
     });
 };
 
-// module.exports.getOne = (req, res) => {
-//   models.Profile.where({ id: req.params.id }).fetch()
-//     .then(profile => {
-//       if (!profile) {
-//         throw profile;
-//       }
-//       res.status(200).send(profile);
-//     })
-//     .error(err => {
-//       res.status(500).send(err);
-//     })
-//     .catch(() => {
-//       res.sendStatus(404);
-//     });
-// };
-
 module.exports.updateScore = (userId, win) => {
   models.Profile.where({id: userId}).fetch()
     .then(profile => {
@@ -93,22 +77,3 @@ module.exports.update = (req, res, callback) => {
       res.sendStatus(404);
     });
 };
-
-// module.exports.deleteOne = (req, res) => {
-//   models.Profile.where({ id: req.params.id }).fetch()
-//     .then(profile => {
-//       if (!profile) {
-//         throw profile;
-//       }
-//       return profile.destroy();
-//     })
-//     .then(() => {
-//       res.sendStatus(200);
-//     })
-//     .error(err => {
-//       res.status(503).send(err);
-//     })
-//     .catch(() => {
-//       res.sendStatus(404);
-//     });
-// };
