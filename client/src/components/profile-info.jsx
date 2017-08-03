@@ -9,7 +9,7 @@ const ProfileInfo = ({profile, rank}) => {
       <h3>
         Wins: {profile.games_won ?
         Math.floor(profile.games_won / profile.games_played * 100) + "%" :
-        "Can't win if you don't play"}
+        "0%"}
       </h3>
       <hr />
     </div>
