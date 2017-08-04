@@ -108,7 +108,10 @@ class Connect extends React.Component {
                  defaultValue={this.serial}
           />
 
-          <button className='connect-button' onClick={this.handleConnect.bind(this)} disabled={this.state.playButton}>Check Signal Strength</button>
+          <button className='connect-button'
+                  onClick={this.handleConnect.bind(this)}
+                  disabled={this.state.playButton}>Check Signal Strength
+          </button>
         </div>
         }
 

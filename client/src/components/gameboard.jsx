@@ -107,18 +107,12 @@ class Gameboard extends React.Component {
       return (
 
       <div>
-        <div className='addMarginTop'>
-          <p className='title1'>{this.state.winner} won the game!</p>
+        <p className='gameOverTitle'>{this.state.winner} won the game!</p>
             <div className='add-outer'>
               <p className='add-inner'>Add {this.state.winner} as a friend</p>
             </div>
-        </div>
         <LeaderBoard />
       </div>
-        // <div>
-        //   <h3 className="title1">{this.state.winner} won the game!</h3>
-        //   <LeaderBoard />
-        // </div>
       );
 
     }

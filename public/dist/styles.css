@@ -32,6 +32,14 @@ input::-webkit-input-placeholder {
   margin-top: 50px;
 }
 
+.tableWrapper {
+  display: block;
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  margin-top: 220px;
+}
+
 
 
 /*NAV ITEMS*/
@@ -322,10 +330,8 @@ h1.leaderboard {
   margin: 0 auto;
 }
 
-#ButtonHolder{
+#buttonHolder{
   position: relative;
-  top: 100px;
-  left: 250px;
 }
 
 
@@ -436,21 +442,21 @@ h1.leaderboard {
 /*
 */
 
-.addMarginTop {
-  margin-top: 50px;
-}
-
-.title1 {
-  position: relative;
+.gameOverTitle {
+  display: block;
   text-align: center;
   font-family: Rubik;
   font-size: 50px;
   letter-spacing: -1.2px;
   color: #208dd7;
+  padding-top: 50px;
 }
 
 .add-outer {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
   width: 240px;
   height: 46px;
@@ -460,12 +466,14 @@ h1.leaderboard {
 
 .add-inner {
   position: relative;
-  top: 10px;
   font-family: Rubik;
   font-size: 17px;
   font-weight: 500;
+  height: 17px;
   letter-spacing: -0.4px;
   text-align: center;
+  vertical-align: middle;
+
   color: #ffffff;
 }
 

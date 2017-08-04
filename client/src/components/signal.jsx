@@ -5,9 +5,6 @@ import ViewBars from './view-bars.jsx';
 class Signal extends React.Component {
 
   constructor(props) {
-    /* pseudocode add to props when render
-     <button onClick={this.handlePlay.bind(this)} disabled={!this.state.playButton}>Play</button>
-    */
 
 
     super(props);
@@ -102,3 +99,7 @@ class Signal extends React.Component {
 }
 
 export default Signal;
+
+/* pseudocode add to props when render
+ <button onClick={this.handlePlay.bind(this)} disabled={!this.state.playButton}>Play</button>
+ */
