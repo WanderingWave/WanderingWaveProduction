@@ -121,6 +121,8 @@ class Connect extends React.Component {
             socket={this.socket}
             matched={this.state.matched}
             nextGame={this.state.nextGame}
+            disabled={!this.state.playButton}
+            onClick={this.handlePlay.bind(this)}
           />
         </div>
         }

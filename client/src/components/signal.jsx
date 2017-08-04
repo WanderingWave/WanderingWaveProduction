@@ -88,11 +88,9 @@ class Signal extends React.Component {
               />
             </div>
 
-          <div id = "buttonHolder">
-            <div  className='rectangle-3'>
+            <div className='rectangle-3' disabled={!this.props.disabled} onClick={this.props.onClick} >
               <p className='play-game'>Play Game</p>
             </div>
-          </div>
 
 
       </div>
