@@ -62,7 +62,7 @@ input::-webkit-input-placeholder {
 }
 
 .nav-item,
-a:visited, a:hover, a:visited:hover{
+a:visited, a:hover, a:visited:hover, a:active, a:link{
   margin-top: 24px;
   margin-left: 30px;
   margin-right: 30px;
