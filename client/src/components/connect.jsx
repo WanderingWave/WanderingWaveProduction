@@ -104,7 +104,7 @@ class Connect extends React.Component {
           <h3 className='instructions'> Enter your headset number</h3>
           <input className='serial'
                  id="serial"
-            
+
                  defaultValue={this.serial}
           />
 
@@ -114,10 +114,12 @@ class Connect extends React.Component {
 
         {(this.state.connected && !this.state.matched) &&
         <div>
-          <Signal socket={this.socket}
+          <Signal
             socket={this.socket}
             matched={this.state.matched}
             nextGame={this.state.nextGame}
+            disabled={!this.state.playButton}
+            onClick={this.handlePlay.bind(this)}
           />
         </div>
         }
