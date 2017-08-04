@@ -31,6 +31,7 @@ class Gameboard extends React.Component {
           this.setState({ winner: this.props.player2 });
         }
 
+
         let onLeft = localStorage.getItem('left');
         let myUserId = localStorage.getItem('userId');
         let myName = localStorage.getItem('display');
@@ -54,7 +55,7 @@ class Gameboard extends React.Component {
           winnerName = myName;
         }
 
-        this.props.socket.emit('gameOver', {winner, loser, key, winnerName});
+        this.props.socket.emit('gameOver', { winner, loser, key, winnerName });
       }
     }.bind(this));
   }
@@ -84,31 +85,20 @@ class Gameboard extends React.Component {
 
   render() {
 
-    const Player1 = {
-      color: 'blue',
-      float: 'left',
-      marginLeft: 50
-    };
-
-    const Player2 = {
-      color: 'blue',
-      float: 'right',
-      marginRight: 50
-    };
-
-
     if (this.state.cx < 1000 && this.state.cx > 140) {
       return (
 
         <div>
-          <h1 style={Player1} className="player-1">{this.props.player1}</h1>
-          <h1 style={Player2} className="player-2">{this.props.player2}</h1>
+          <div className="players">
+          <h1 className="player-1">{this.props.player1}</h1>
+          <h1 className="player-2">{this.props.player2}</h1>
+          </div>
+                <svg width="1140" height="450">
+                <circle className ="ball" cx={570} cy={this.state.cy} r={this.state.radius} stroke="#e46696" strokeWidth="3" fill="#e46696" />
+                  <line x1="100" y1="25" x2="100" y2="425" style={{stroke:"#e46696", strokeWidth: 1}} />
+                  <line x1="1040" y1="25" x2="1040" y2="425" style={{stroke:"#e46696", strokeWidth: 1}} />
+                </svg>
 
-            <svg width="1140" height="450">
-            <circle className ="ball" cx={570} cy={this.state.cy} r={this.state.radius} stroke="blue" strokeWidth="4" fill="blue" />
-              <line x1="100" y1="25" x2="100" y2="425" style={{stroke:"blue", strokeWidth: 10}} />
-              <line x1="1040" y1="25" x2="1040" y2="425" style={{stroke:"blue", strokeWidth: 10}} />
-            </svg>
 
         </div>
       );

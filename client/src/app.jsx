@@ -22,9 +22,9 @@ class App extends React.Component {
   navClass(location) {
 
     let map = {
-      connected: 'blue',
-      leaderBoard: 'lavender',
-      profile: 'grey'
+      connected: 'pink',
+      leaderBoard: 'green',
+      profile: 'blue'
     };
 
     this.setState({
@@ -39,11 +39,12 @@ class App extends React.Component {
 
           <div>
             {/*<div className={this.state.navClass}>*/}
-            <div className='nav'>
+            <div className={this.state.navClass}>
               <div><Link className="nav-item" to="/">Home</Link></div>
               <div><Link className="nav-item" to="/connected">Connect</Link></div>
               <div><Link className="nav-item" to="/leaderBoard">Leader Board</Link></div>
               <div><Link className="nav-item" to="/notifications">Notifications</Link></div>
+
             </div>
 
             <Route exact path="/" render={(...props) => {
