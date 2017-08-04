@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import Waiting from './waiting.jsx';
 import Gameboard from './gameboard.jsx';
 import ViewBars from './view-bars.jsx';
+import LeaderBoard from './leader-board.jsx';
 
 class Connect extends React.Component {
 
@@ -91,9 +92,15 @@ class Connect extends React.Component {
     });
 
   }
+
+  // nextGame added
   render() {
     return (
-      <div>
+
+
+      <div id = "OuterOuter" >
+
+
         {!this.state.connectedHeadset &&
         <div>
           <h3 className='instructions'> Enter a headset number to start a game</h3>
@@ -106,13 +113,16 @@ class Connect extends React.Component {
         </div>
         }
 
-        {this.state.connected && <ViewBars socket={this.socket} matched={this.state.matched} />}
         {(this.state.connected && !this.state.matched) &&
         <div>
-          <Signal socket={this.socket}/>
-          <button onClick={this.handlePlay.bind(this)} disabled={!this.state.playButton}>Play</button>
+          <Signal socket={this.socket}
+            socket={this.socket}
+            matched={this.state.matched}
+            nextGame={this.state.nextGame}
+          />
         </div>
         }
+
 
         {(this.state.connected && this.state.searching) && <Waiting />}
         {(this.state.connected && this.state.matched) &&
@@ -124,6 +134,7 @@ class Connect extends React.Component {
                    player2={this.state.player2}
         />}
       </div>
+
     );
   }
 }

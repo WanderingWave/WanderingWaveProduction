@@ -1,8 +1,15 @@
 import React from 'react';
+import ViewBars from './view-bars.jsx';
+
 
 class Signal extends React.Component {
 
   constructor(props) {
+    /* pseudocode add to props when render
+     <button onClick={this.handlePlay.bind(this)} disabled={!this.state.playButton}>Play</button>
+    */
+
+
     super(props);
     this.state = {
       leftEar: null,
@@ -57,8 +64,9 @@ class Signal extends React.Component {
     }
 
     return (
-      <div>
+      <div id ='SignalTop'>
           <h3 className='press-play-when-all'>Press play when all the circles are filled</h3>
+
 
             <div className='outer'>
               <div className="circle" style={signalStrength.leftForehead}>
@@ -74,6 +82,21 @@ class Signal extends React.Component {
                   <p>RE</p>
               </div>
             </div>
+
+            <div className='box'>
+              <ViewBars
+                socket={this.props.socket}
+                matched={this.props.matched}
+                nextGame={this.props.nextGame}
+              />
+            </div>
+
+          <div id = "ButtonHolder">
+            <div  className='rectangle-3'>
+              <p className='play-game'>Play Game</p>
+            </div>
+          </div>
+
 
       </div>
     );

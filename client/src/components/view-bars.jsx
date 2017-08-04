@@ -101,21 +101,35 @@ class ViewBars extends React.Component {
       this.updateBars();
     }, i);
   }
+  /*
+  !this.state.gameOver &&
+  */
   render() {
-    return (
-      <div id = "ViewBars">
-        <h3 className='concentration'>Mellow</h3>
-        <div className='rectangle-6' id="mellow"></div>
-        {!this.props.matched &&
-          <div>
-            <h3 className='concentration' >Concentration</h3>
-            <div className='rectangle-6' id="concentration"></div>
-            <h3 className='concentration'>EEG</h3>
-            <div className='rectangle-6' id="raw"></div>
-          </div>
-        }
-      </div>
-    );
+    if(!this.state.gameOver){
+
+      return (
+        <div id = "ViewBars">
+
+          <h4 className='concentration'>Mellow</h4>
+          <div className='rectangle-6' id="mellow"></div>
+
+          {!this.props.matched &&
+            <div>
+              <h4 className='concentration' >Concentration</h4>
+              <div className='rectangle-6' id="concentration"></div>
+
+              <h4 className='concentration'>EEG</h4>
+              <div className='rectangle-6' id="raw"></div>
+            </div>
+          }
+        </div>
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
+
   }
 }
 export default ViewBars;

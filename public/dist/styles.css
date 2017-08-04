@@ -29,7 +29,7 @@ input::-webkit-input-placeholder {
 .leaderboard-table {
   width: 80%;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 
@@ -125,6 +125,8 @@ h1.leaderboard {
   flex-direction: column;
 }
 
+
+
 .profile-number {
   font-family: Rubik;
   font-size: 60px;
@@ -149,7 +151,7 @@ h1.leaderboard {
   background-image: linear-gradient(94deg, #208dd7, #8ad0c5);
 }
 
-/*
+/* ViewBars
 */
 
 .rectangle-6 {
@@ -160,26 +162,68 @@ h1.leaderboard {
 }
 
 .concentration {
-  width: 111px;
+  position: relative;
+  display: block;
   height: 22px;
   font-family: Rubik;
   font-size: 18px;
   font-weight: 300;
   letter-spacing: -0.4px;
   color: #e46696;
+  word-wrap: break-word;
+  white-space: pre-line;
 }
 
 
 /* ViewBars and Signal
 */
 
-#ViewBars {
-  float: left;
+
+#OuterOuter{
+  position: relative;
+  margin: 0 auto;
 }
+
+#ButtonHolder{
+  position: relative;
+  top: 100px;
+  left: 250px;
+}
+
+
+
+
+#SignalTop {
+  position: relative;
+  top: 100px;
+  width: 600px;
+  height: 300px;
+  margin: 0 auto;
+}
+.play-game {
+  position: relative;
+  top: 10px;
+  font-family: Rubik;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.rectangle-3 {
+  position: relative;
+  width: 240px;
+  height: 46px;
+  left: -100px;
+  top: 150px;
+  border-radius: 100px;
+  background-color: #e46696;
+}
+
 
 .outer{
   margin-top: 30px;
-  margin-right: 100px;
   width: 190px;
   height: 190px;
   float: left;
@@ -219,23 +263,6 @@ h1.leaderboard {
   color: #e46696;
 }
 
-.play-game {
-  position: relative;
-  top: 10px;
-  font-family: Rubik;
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.4px;
-  text-align: center;
-  color: #ffffff;
-}
-
-.rectangle-3 {
-  width: 240px;
-  height: 46px;
-  border-radius: 100px;
-  background-color: #e46696;
-}
 
 
 /*gameboard
@@ -259,5 +286,50 @@ h1.leaderboard {
   font-weight: bold;
   margin-left: 100px;
   float: left;
+}
+
+
+/*
+*/
+
+.addMarginTop {
+  margin-top: 50px;
+}
+
+.title1 {
+  position: relative;
+  text-align: center;
+  font-family: Rubik;
+  font-size: 50px;
+  letter-spacing: -1.2px;
+  color: #208dd7;
+}
+
+.add-outer {
+  position: relative;
+  margin: 0 auto;
+  width: 240px;
+  height: 46px;
+  border-radius: 100px;
+  background-color: #208dd7;
+}
+
+.add-inner {
+  position: relative;
+  top: 10px;
+  font-family: Rubik;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.box {
+  height: 200px;
+  width: 200px;
+  border: 1px solid;
+  float:left;
+  margin-left: 100px;
 }
 
