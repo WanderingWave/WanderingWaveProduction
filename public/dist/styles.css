@@ -392,6 +392,8 @@ h1.leaderboard {
 }
 
 .press-play-when-all {
+  position: relative;
+  display: inline-block;
   width: 644px;
   height: 46px;
   font-family: Rubik;
@@ -468,11 +470,39 @@ h1.leaderboard {
 }
 
 .box {
+  position: relative;
+  top: 15px;
   height: 200px;
   width: 200px;
-  border: 1px solid;
   float:left;
   margin-left: 100px;
+}
+
+/* current
+*/
+
+.play-game {
+  display: inline-block;
+  position: relative;
+  left: 80px;
+  top: 10px;
+  font-family: Rubik;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.rectangle-3 {
+  display: inline-block;
+  position: relative;
+  width: 240px;
+  height: 46px;
+  left: -60px;
+  top: 100px;
+  border-radius: 100px;
+  background-color: #e46696;
 }
 
 
