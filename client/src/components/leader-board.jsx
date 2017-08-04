@@ -18,7 +18,8 @@ class LeaderBoard extends React.Component {
     });
     this.props.navClass('leaderBoard');
     this.setState({
-      pictureClass: this.props.fromNav ? 'hero-leaderboard' : 'gameOver'
+      pictureClass: this.props.fromNav ? 'hero-leaderboard' : ''
+
     });
   }
 
@@ -27,27 +28,27 @@ class LeaderBoard extends React.Component {
     return (
       <div>
         <div className={this.state.pictureClass}></div>
-       <h1 className="leaderboard">This Week's Rankings</h1>
-
-
-        <table className="leaderboard-table">
-          <tbody>
-          <tr>
-            <th className="table-title-leaderboard">Rank</th>
-            <th className="table-title-leaderboard">Name</th>
-            <th className="table-title-leaderboard">Wins</th>
-          </tr>
-          {this.state.top.map((player, index) => {
-            return (
-              <tr key={index}>
-                <td className="row-entry-leaderboard">{index + 1}</td>
-                <td className="row-entry-leaderboard">{player.display}</td>
-                <td className="row-entry-leaderboard">{player.games_won}</td>
-              </tr>
-            );
-          })}
-          </tbody>
-        </table>
+        <h1 className="leaderboard">This Week's Rankings</h1>
+        <div className={this.props.fromNav ? '' : 'tableWrapper'}>
+          <table className="leaderboard-table">
+            <tbody>
+            <tr>
+              <th className="table-title-leaderboard">Rank</th>
+              <th className="table-title-leaderboard">Name</th>
+              <th className="table-title-leaderboard">Wins</th>
+            </tr>
+            {this.state.top.map((player, index) => {
+              return (
+                <tr key={index}>
+                  <td className="row-entry-leaderboard">{index + 1}</td>
+                  <td className="row-entry-leaderboard">{player.display}</td>
+                  <td className="row-entry-leaderboard">{player.games_won}</td>
+                </tr>
+              );
+            })}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
