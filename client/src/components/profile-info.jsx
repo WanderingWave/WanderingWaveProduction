@@ -5,7 +5,7 @@ const ProfileInfo = ({profile, rank}) => {
   console.log('this is the profile obj ', profile);
   return (
     <div>
-     <div className="hero"></div>
+     <div className="hero-profile"></div>
      <div className="profile-hero-container">
       <h1 className="profile-hero-item-name">{profile.display}</h1>
       <div className="profile-hero-item">
@@ -18,7 +18,6 @@ const ProfileInfo = ({profile, rank}) => {
         "0%"}</h3>
         <h3 className="profile-caption">Games Won</h3>
       </div>
-      <hr />
      </div>
     </div>
   );

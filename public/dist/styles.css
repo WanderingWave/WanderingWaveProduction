@@ -34,18 +34,24 @@ input::-webkit-input-placeholder {
 
 
 
-
-
-
-
 /*NAV ITEMS*/
-
-.nav {
+.blue {
   width: 100%;
   height: 65px;
   background-image: linear-gradient(94deg, #208dd7, #8ad0c5);
 }
 
+.pink {
+  width: 100%;
+  height: 65px;
+  background-image: linear-gradient(94deg, #e46696, #ea7366);
+}
+
+.green {
+  width: 100%;
+  height: 65px;
+  background-image: linear-gradient(274deg, #a2b83b, #009a9c);
+}
 
 .nav-item {
   float: left;
@@ -56,7 +62,7 @@ input::-webkit-input-placeholder {
 }
 
 .nav-item,
-a:visited {
+a:visited, a:hover, a:visited:hover{
   margin-top: 24px;
   margin-left: 30px;
   margin-right: 30px;
@@ -68,13 +74,22 @@ a:visited {
 }
 
 
-
-
 /*LEADERBOARD*/
 
-.hero {
+.hero-profile {
   position: relative;
   background-image: url('../assets/background.png');
+  background-size: 130%;
+  background-position: center;
+  margin-top: -300px;
+  height: 700px;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+.hero-leaderboard {
+  position: relative;
+  background-image: url('../assets/background-green.png');
   background-size: 130%;
   background-position: center;
   margin-top: -300px;
@@ -86,34 +101,34 @@ a:visited {
 
 h1.leaderboard {
   position: relative;
-  margin-top: -240px;
+   margin-top: -300px;
   text-align: center;
   font-family: Rubik;
   font-size: 50px;
   letter-spacing: -1.2px;
-  color: #208dd7;
+  color: #47bba5;
 }
 
-.table-title {
+.table-title-leaderboard {
+  padding-top: 70px;
   width: 69px;
   height: 19px;
   font-family: Rubik;
   font-size: 16px;
   font-weight: 300;
   letter-spacing: -0.4px;
-  color: #208dd7;
+  color: #47bba5;
 }
 
-.row-entry {
+.row-entry-leaderboard {
   width: 154px;
   height: 24px;
   font-family: Rubik;
   font-size: 20px;
   font-weight: 500;
   letter-spacing: -0.5px;
-  color: #208dd7;
+  color: #47bba5;
 }
-
 
 
 
@@ -122,7 +137,7 @@ h1.leaderboard {
 .profile-hero-container {
   display: flex;
   justify-content: space-around;
-  margin-top: -270px;
+  margin-top: -330px;
   padding-left: 60px;
 }
 
@@ -156,12 +171,31 @@ h1.leaderboard {
 }
 
 
+.table-title-profile {
+  width: 69px;
+  height: 19px;
+  font-family: Rubik;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: -0.4px;
+  color: #208dd7;
+}
+
+.row-entry-profile {
+  width: 154px;
+  height: 24px;
+  font-family: Rubik;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+   color: #208dd7;
+}
 
 
 /*CONNECT*/
 
 .instructions {
-
+  margin-top: 70px;
   width: 477px;
   height: 46px;
   font-family: Rubik;
@@ -187,12 +221,13 @@ h1.leaderboard {
 }
 
 .connect-background {
-  margin-top: 65px;
+
   background-color: #fdeff3;
-  height: 800px;
+  height: 1000px;
 }
 
 .connect-container {
+
   background-color: #fdeff3;
   width: 100%;
   padding: 0;
@@ -206,13 +241,58 @@ h1.leaderboard {
 }
 
 .serial {
+
   background: rgba(0, 0, 0, 0);
   outline: none;
-  margin: 20px;
+  margin-top: 70px;
   width: 200px;
   height: 40px;
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: solid 2px #e46696;
+  font-family: Rubik;
+  font-size: 50px;
+  letter-spacing: -1.2px;
+  color: #e46696;
+  font-weight: 100;
+
+  text-align: center;
 }
+
+/*GAMEBOARD*/
+
+.players{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+
+}
+.player-1{
+    width: 252px;
+  height: 33px;
+  font-family: Rubik;
+  font-size: 28px;
+  letter-spacing: -0.7px;
+  color: #e46696;
+}
+
+.player-2{
+    width: 252px;
+  height: 33px;
+  font-family: Rubik;
+  font-size: 28px;
+  letter-spacing: -0.7px;
+  color: #e46696;
+}
+
+
+
+/*.nav-item {
+  z-index: 100;
+  color: white;
+  font-weight: bold;
+  margin-left: 100px;
+  float: left;
+}
+*/

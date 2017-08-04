@@ -14,6 +14,7 @@ class Connect extends React.Component {
       playButton: false,
       matched: false,
       searching: false,
+      connectedHeadset: false,
       name: '',
       serial: '',
       opponent: '',
@@ -56,6 +57,10 @@ class Connect extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.props.navClass('connected');
+  }
+
   handlePlay() {
     this.setState({searching: true});
     this.socket.emit('startPlaying', { name: this.state.name, serial: this.state.serial });
@@ -75,6 +80,7 @@ class Connect extends React.Component {
     console.log('time to connect for a stream');
     this.setState({
       connected: true,
+      connectedHeadset: true,
       playButton: true
     });
 
@@ -87,22 +93,28 @@ class Connect extends React.Component {
   }
   render() {
     return (
+
       <div className='connect-background'>
-        {!this.state.matched &&
+        {!this.state.connectedHeadset &&
         <div className='connect-container'>
           <h3 className='instructions'> Enter your headset number</h3>
           <input className='serial'
                  id="serial"
-                 placeholder="3D62 or 4B9F"
+            
                  defaultValue={this.serial}
           />
+
           <button className='connect-button' onClick={this.handleConnect.bind(this)} disabled={this.state.playButton}>Check Signal Strength</button>
-          <button onClick={this.handlePlay.bind(this)} disabled={!this.state.playButton}>Play</button>
         </div>
         }
 
-        {(this.state.connected && !this.state.matched) && <Signal socket={this.socket} />}
         {this.state.connected && <ViewBars socket={this.socket} matched={this.state.matched} />}
+        {(this.state.connected && !this.state.matched) &&
+        <div>
+          <Signal socket={this.socket}/>
+          <button onClick={this.handlePlay.bind(this)} disabled={!this.state.playButton}>Play</button>
+        </div>
+        }
 
         {(this.state.connected && this.state.searching) && <Waiting />}
         {(this.state.connected && this.state.matched) &&
