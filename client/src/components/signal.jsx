@@ -1,8 +1,15 @@
 import React from 'react';
+import ViewBars from './view-bars.jsx';
+
 
 class Signal extends React.Component {
 
   constructor(props) {
+    /* pseudocode add to props when render
+     <button onClick={this.handlePlay.bind(this)} disabled={!this.state.playButton}>Play</button>
+    */
+
+
     super(props);
     this.state = {
       leftEar: null,
@@ -57,12 +64,40 @@ class Signal extends React.Component {
     }
 
     return (
-      <div>
-          <h3>Headset Signal Quality</h3>
-          <div style={signalStrength.leftEar}>Left Ear</div>
-          <div style={signalStrength.leftForehead}>Left Forehead</div>
-          <div style={signalStrength.rightForehead}>Right Forehead</div>
-          <div style={signalStrength.rightEar}>Right Ear</div>
+      <div id ='SignalTop'>
+          <h3 className='press-play-when-all'>Press play when all the circles are filled</h3>
+
+
+            <div className='outer'>
+              <div className="circle" style={signalStrength.leftForehead}>
+                  <p>LF</p>
+              </div>
+              <div className="circle" style={signalStrength.rightForehead}>
+                  <p>RF</p>
+              </div>
+              <div className="circle" style={signalStrength.leftEar}>
+                  <p>LE</p>
+              </div>
+              <div className="circle" style={signalStrength.rightEar}>
+                  <p>RE</p>
+              </div>
+            </div>
+
+            <div className='box'>
+              <ViewBars
+                socket={this.props.socket}
+                matched={this.props.matched}
+                nextGame={this.props.nextGame}
+              />
+            </div>
+
+          <div id = "ButtonHolder">
+            <div  className='rectangle-3'>
+              <p className='play-game'>Play Game</p>
+            </div>
+          </div>
+
+
       </div>
     );
   }

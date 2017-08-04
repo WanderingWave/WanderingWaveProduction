@@ -1,17 +1,17 @@
 # Project Name
 
-The project description
+Wandering Wave let users move a ball with their brain.
 
 ## Team
 
-- teamMember
-- teamMember
-- teamMember
-- teamMember
+- Kenneth
+- Ruben
+- Kenly
+- Chris
 
-## Roadmap
+## Architecture
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project architecture [here](https://www.lucidchart.com/documents/view/c0ee4a7b-8f77-4ef5-b3aa-6c055ec97c07)
 
 ## Contributing
 
@@ -20,7 +20,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 # Table of Contents
 
 1. [Usage](#Usage)
-1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
@@ -29,12 +28,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 > Some usage instructions
 
-## Requirements
 
-- Node 6.9.x
-- Redis 3.2.x
-- Postgresql 9.6.x
-- etc
 
 ## Development
 
