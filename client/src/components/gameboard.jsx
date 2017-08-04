@@ -31,18 +31,24 @@ class Gameboard extends React.Component {
           this.setState({ winner: this.props.player2 });
         }
 
-        let onLeft = localStorage.getItem('left'),
-          myUserId = localStorage.getItem('userId'),
-          myName = localStorage.getItem('display'),
-          opponentUserId = this.props.opponentUserId,
-          opponentName = this.props.opponent,
-          key = this.props.position;
 
-        let winner = opponentUserId,
-          loser = myUserId,
-          winnerName = opponentName;
+        let onLeft = localStorage.getItem('left');
+        let myUserId = localStorage.getItem('userId');
+        let myName = localStorage.getItem('display');
+        let opponentUserId = this.props.opponentUserId;
+        let opponentName = this.props.opponent;
+        let key = this.props.position;
 
-        let bool = function(v) { return v === "false" || v === "null" || v === "NaN" || v === "undefined" || v === "0" ? false : !!v; };
+        let winner = opponentUserId;
+        let loser = myUserId;
+        let winnerName = opponentName;
+
+        // refactor
+        let bool = function(v) {
+          return ( v === "false" || v === "null" || v === "NaN" || v === "undefined"
+            || v === "0" ) ? false : !!v;
+        };
+
         if (bool(onLeft) && leftWon || !bool(onLeft) && !leftWon) {
           winner = myUserId;
           loser = opponentUserId;
@@ -81,6 +87,7 @@ class Gameboard extends React.Component {
 
     if (this.state.cx < 1000 && this.state.cx > 140) {
       return (
+
         <div>
           <div className="players">
           <h1 className="player-1">{this.props.player1}</h1>
@@ -92,18 +99,32 @@ class Gameboard extends React.Component {
                   <line x1="1040" y1="25" x2="1040" y2="425" style={{stroke:"#e46696", strokeWidth: 1}} />
                 </svg>
 
+
         </div>
       );
     } else {
+
       return (
-        <div>
-          <h1>Gameover</h1>
-          <h3>{this.state.winner} won the game!</h3>
-          <LeaderBoard />
+
+      <div>
+        <div className='addMarginTop'>
+          <p className='title1'>{this.state.winner} won the game!</p>
+            <div className='add-outer'>
+              <p className='add-inner'>Add {this.state.winner} as a friend</p>
+            </div>
         </div>
+        <LeaderBoard />
+      </div>
+        // <div>
+        //   <h3 className="title1">{this.state.winner} won the game!</h3>
+        //   <LeaderBoard />
+        // </div>
       );
+
     }
   }
-};
+
+
+}
 
 export default Gameboard;

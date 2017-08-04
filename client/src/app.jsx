@@ -54,6 +54,7 @@ class App extends React.Component {
 
             <Route path="/leaderBoard" render={(...props) => {
               return <LeaderBoard {...props}
+                       fromNav={true}
                        navClass={this.navClass.bind(this)} />;
             }} />
 

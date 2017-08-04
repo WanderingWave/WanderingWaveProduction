@@ -5,7 +5,8 @@ class LeaderBoard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      top: []
+      top: [],
+      pictureClass: ''
     };
   }
 
@@ -16,13 +17,19 @@ class LeaderBoard extends React.Component {
       this.setState(top);
     });
     this.props.navClass('leaderBoard');
+    this.setState({
+      pictureClass: this.props.fromNav ? 'hero-leaderboard' : 'gameOver'
+    });
   }
+
 
   render() {
     return (
       <div>
-           <div className="hero-leaderboard"></div>
-       <h1 className="leaderboard">Leader Board</h1>
+        <div className={this.state.pictureClass}></div>
+       <h1 className="leaderboard">This Week's Rankings</h1>
+
+
         <table className="leaderboard-table">
           <tbody>
           <tr>
