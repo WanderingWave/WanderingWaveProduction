@@ -322,10 +322,8 @@ h1.leaderboard {
   margin: 0 auto;
 }
 
-#ButtonHolder{
+#buttonHolder{
   position: relative;
-  top: 100px;
-  left: 250px;
 }
 
 
